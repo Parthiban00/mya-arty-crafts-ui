@@ -1,0 +1,34 @@
+<p-toolbar class="home-header">
+    <div class="p-toolbar-group-start">
+        <div class="logo">
+            <img src="../../../assets/images/logo.jpg" />
+        </div>
+        <!-- <i class="pi pi-align-justify cursor-pointer vertical-align-middle" (click)="toggleMenu()"></i> -->
+
+        <div class="p-inputgroup m-2">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-search"></i>
+            </span>
+            <input pInputText placeholder="Search Proudcts" [formControl]="searchStr" />
+        </div>
+    </div>
+
+    <div class="p-toolbar-group-center header-menubar">
+        <p-menubar [model]="items"></p-menubar>
+    </div>
+
+
+    <div class="p-toolbar-group-end">
+        <p-button icon="pi pi-user" class="m-1" styleClass="p-button-rounded p-button-text"  [routerLink]="['/auth']"></p-button>
+        <p-button icon="pi pi-shopping-cart" class="m-1" styleClass="p-button-rounded p-button-text"
+         [routerLink]="['/cart']"></p-button>
+    </div>
+
+</p-toolbar>
+
+<!-- <div class="card flex justify-content-center cart-dialog">
+    <p-dialog header="Cart" [position]="position" [style]="{ width: '30vw', height:'100vh' }" [(visible)]="visible"
+        [maximizable]="true" [modal]="true" [draggable]="false" [resizable]="true">
+
+    </p-dialog>
+</div> -->

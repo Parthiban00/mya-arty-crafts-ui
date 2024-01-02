@@ -1,0 +1,17 @@
+<div class="main-content" [class.toggle-move-body]="shrinkMenu">
+
+    <!-- <app-side-nav [shrinkMenu]="shrinkMenu"></app-side-nav> -->
+
+    <main>
+        <app-header (shrinkSideNav)="shrinkSideNav($event)"></app-header>
+
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+
+        <div>
+          <app-footer></app-footer>
+        </div>
+      </main>
+
+</div>

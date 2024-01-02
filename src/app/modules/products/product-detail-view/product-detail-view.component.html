@@ -1,0 +1,53 @@
+<div class="product-detail-view-container p-3">
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-6 xl:col-6 p-1" style="height: calc(100vh - 186px) !important;">
+            <div class="card h-full">
+                <p-galleria [value]="images" [thumbnailsPosition]="'left'" [responsiveOptions]="responsiveOptions"
+                    [containerStyle]="{ 'max-width': '100%', 'height': '100%' }" [numVisible]="5">
+                    <ng-template pTemplate="item" let-item>
+                        <!-- <img [src]="item.itemImageSrc" style="width: 500px; max-height: 472px; display: block;" /> -->
+                        <p-image [src]="item.itemImageSrc" width="500"  alt="Image" [preview]="true"></p-image>
+                    </ng-template>
+                    <ng-template pTemplate="thumbnail" let-item>
+                        <div class="grid grid-nogutter justify-content-center">
+                            <img [src]="item.thumbnailImageSrc" style="width: 100px; height: 100px;" />
+                           
+                        </div>
+                    </ng-template>
+                </p-galleria>
+            </div>
+
+        </div>
+        <div class="col-12 md:col-12 lg:col-6 xl:col-6 p-5" style="background: white;border-radius: 0 10px 10px 0;">
+            <div class="card">
+                <div class="grid">
+                    <div class="col-12 md:col-12 lg:col-12 font-bold">
+                       Product Name
+                    </div>
+                    <div class="col-12 md:col-12 lg:col-12">
+                        <p-rating [readonly]="true" [(ngModel)]="rating" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="col-12 md:col-12 lg:col-12 font-bold p-1">
+                       
+                            <div class="flex">
+                                <div class="original-price font-bold p-1" style="text-decoration: line-through;">
+                                    Rs: 500.00
+                                </div>
+                                <div class="actual-price font-bold p-1" style="color: var(--primary-color)">
+                                    Rs: 350.00
+                                </div>
+                                <div class="discount p-1">
+                                    <p-tag value="Save 30%"></p-tag>
+                                </div>
+                            </div>
+                   
+                    </div>
+
+                    <div class="col-12 md:col-12 lg:col-12 p-1">
+               <app-dynamic-form-builder></app-dynamic-form-builder>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

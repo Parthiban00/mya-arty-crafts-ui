@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of formFields">
+      <label>{{ field.label }}</label>
+      <ng-container [ngSwitch]="field.type">
+        <input *ngSwitchCase="'text input'" type="text" [formControlName]="field.label" />
+        <p-fileUpload *ngSwitchCase="'file upload'" name="file"></p-fileUpload>
+      </ng-container>
+    </div>
+  
+    <button type="submit">Submit</button>
+  </form>

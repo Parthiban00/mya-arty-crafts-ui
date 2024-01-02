@@ -1,0 +1,28 @@
+<ng-container [ngSwitch]="sliderFor">
+    <div class="carousel-container" *ngSwitchCase="'banner'">
+        <p-carousel [value]="sliderData" [circular]="false"
+            [responsiveOptions]="responsiveOptions" autoPlayInterval="'3000'" [circular]="true">
+            <ng-template let-sliderData pTemplate="item">
+               <app-slider-banner [product]="sliderData"></app-slider-banner>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+    <div class="carousel-container" *ngSwitchCase="'suggested-products'">
+        <p-carousel [value]="sliderData"  [circular]="false"
+            [responsiveOptions]="responsiveOptions" autoPlayInterval="'3000'" [circular]="true">
+            <ng-template let-sliderData pTemplate="item">
+                <app-proudct-card [product]="sliderData"></app-proudct-card>
+            </ng-template>
+        </p-carousel>
+    </div>
+
+    <div class="carousel-container" *ngSwitchCase="'chronicles'">
+        <p-carousel [value]="sliderData"  [circular]="false"
+            [responsiveOptions]="responsiveOptions" autoPlayInterval="'3000'" [circular]="true">
+            <ng-template let-sliderData pTemplate="item">
+                <app-chronicles-card [chronicles]="sliderData"></app-chronicles-card>
+            </ng-template>
+        </p-carousel>
+    </div>
+</ng-container>

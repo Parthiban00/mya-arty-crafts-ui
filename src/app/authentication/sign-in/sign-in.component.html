@@ -1,0 +1,47 @@
+<div class="h-screen flex justify-content-center align-items-center">
+    <div class="h-auto w-20rem relative bg-white border-round">
+        <div class="profile-circle h-5rem w-5rem surface-400 -my-5 mx-auto border-circle bg-contain">
+        </div>
+        <form [formGroup]="signInForm" (ngSubmit)="signIn()" autocomplete="off" #signInFormRef>
+            <div class="card text-center h-full p-4">
+                <div class="text-indigo-400">
+                    <h3>Sign In</h3>
+                </div>
+                <div class="card mt-5">
+                    <div class="field">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-user"></i>
+                            <input type="text" formControlName="email" name="email" class="p-inputtext-sm w-17rem" pInputText placeholder="Email" />
+                        </span>
+                    </div>
+                    <div class="field">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-lock"></i>
+                            <input type="text" formControlName="password" name="mobileNo" class="p-inputtext-sm w-17rem" pInputText placeholder="Mobile No." />
+                        </span>
+                    </div>
+                    <!-- <div class="field">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-lock"></i>
+                            <input type="password" formControlName="password" name="password" class="p-inputtext-sm w-17rem" pInputText placeholder="Password" />
+                        </span>
+                    </div> -->
+
+                    <!-- <div class="grid">
+                        <div class="col-6 p-field-checkbox text-left text-sm cursor-pointer inline-flex">
+                            <p-checkbox [binary]=true inputId="binary"></p-checkbox>
+                            <label for="binary" class="ml-1">Remember Me</label>
+                        </div>
+                        <div class="col-6 text-right text-sm text-primary cursor-pointer" [routerLink]="['/auth/forget-password']">Forget Password?</div>
+                    </div> -->
+                    <div class="py-4 px-0">
+                        <p-button label="Log In" (click)="signIn()" styleClass="p-button-sm"></p-button>
+                    </div>
+                    <!-- <div class="py-4 px-0 flex h-8rem justify-content-center align-items-center">
+                        <button pButton type="button" [routerLink]="['/auth/sign-up']" class="newUser-btn" label="New User" icon="pi pi-user-plus" iconPos="right" class="p-button-text"></button>
+                    </div> -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="home-container p-3">
+    <div class="card">
+        <app-carousel-slider [sliderFor]="'banner'" [sliderData]="bannerDetails"></app-carousel-slider>
+    </div>
+
+    <app-title-divider [title]="'Offers'" [icon]="'pi pi-percentage'"></app-title-divider>
+
+    <div class="grid">
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2 p-2" *ngFor="let product of productDetails">
+            <app-proudct-card [product]="product"></app-proudct-card>
+        </div>
+    </div>
+
+    <app-title-divider [title]="'Recent Selling Products'" [icon]="'pi pi-user'"></app-title-divider>
+
+    <!-- <div class="grid">
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2 p-2" *ngFor="let product of recentSellingProducts">
+            <app-proudct-card [product]="product"></app-proudct-card>
+        </div>
+    </div> -->
+
+    <div class="flex-container">
+        <div class="fixed-width-div p-2" *ngFor="let product of recentSellingProducts">
+            <app-proudct-card [product]="product"></app-proudct-card>
+        </div>
+    </div>
+
+    <app-title-divider [title]="'All Categories'" [icon]="'pi pi-user'"></app-title-divider>
+
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-4" [routerLink]="['/products']">
+            <div class="text-left p-3 border-round-sm bg-primary font-bold h-30rem relative cursor-pointer category-container"
+                style="background: url('../../../../assets/images/category_1.jpg'); background-repeat: no-repeat; background-size: cover;">
+                <div class="category-label absolute border-round-sm p-2 max-w-full">
+                    Category Name
+                </div>
+                <p-button class="explore-btn" label="Explore" styleClass="p-button-rounded"></p-button>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-4">
+            <div class="text-left p-3 border-round-sm bg-primary font-bold h-30rem relative cursor-pointer category-container"
+                style="background: url('../../../../assets/images/category_2.jpg'); background-repeat: no-repeat; background-size: cover;">
+                <div class="category-label absolute border-round-sm p-2 max-w-full">
+                    Category Name
+                </div>
+
+                <p-button class="explore-btn" label="Explore" styleClass="p-button-rounded"></p-button>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-4">
+            <div class="text-left p-3 border-round-sm bg-primary font-bold h-30rem relative cursor-pointer category-container"
+                style="background: url('../../../../assets/images/category_3.jpg'); background-repeat: no-repeat; background-size: cover;">
+                <div class="category-label absolute border-round-sm p-2 max-w-full">
+                    Category Name
+                </div>
+                <p-button class="explore-btn" label="Explore" styleClass="p-button-rounded"></p-button>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-4">
+            <div class="text-left p-3 border-round-sm bg-primary font-bold h-30rem relative cursor-pointer category-container"
+                style="background: url('../../../../assets/images/category_1.jpg'); background-repeat: no-repeat; background-size: cover;">
+                <div class="category-label absolute border-round-sm p-2 max-w-full">
+                    Category Name
+                </div>
+                <p-button class="explore-btn" label="Explore" styleClass="p-button-rounded"></p-button>
+            </div>
+        </div>
+    </div>
+
+    <app-title-divider [title]="'Our Chronicles'" [icon]="'pi pi-percentage'"></app-title-divider>
+
+    <div class="card">
+        <app-carousel-slider [sliderFor]="'chronicles'" [sliderData]="chronicleDetails"></app-carousel-slider>
+    </div>
+
+
+    <!-- chronicles details dialog -->
+    <p-dialog header="Our Chronicles" [(visible)]="chronicleDataVisible" [modal]="true" [style]="{ width: '70vw' }" [draggable]="false"
+        [resizable]="false" [maximizable]="true">
+
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-8 xl:col-8 p-2 h-30rem" style="background:#0000000a;" >
+                <div class="text-left p-3 border-round-sm relative h-full image-container"
+                style="background: url('{{chronicleViewData.imageUrl }}');">
+            </div>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-4 xl:col-4 p-2" >
+                <p>{{chronicleViewData.content}}</p>
+            </div>
+        </div>
+    
+    </p-dialog>
+</div>

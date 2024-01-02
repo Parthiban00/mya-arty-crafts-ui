@@ -1,0 +1,9 @@
+<div *ngIf="httpLoaderService.isVisible() | async" class="loaderMask">
+    <div class="main-loader">
+        <span class="loader-spinner loader-spinner1"></span>
+        <span class="loader-spinner loader-spinner2"></span>
+        <span class="loader-spinner loader-spinner3"></span>
+        <br>
+        <!-- <span class="loader-text">LOADING...</span> -->
+    </div>
+</div>
