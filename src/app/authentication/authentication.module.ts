@@ -6,19 +6,23 @@ import { PrimeNgModule } from '../shared/prime-ng.module';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { OTPComponent } from './otp/otp.component';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   declarations: [
     SignInComponent,
     SignUpComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    OTPComponent
   ],
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
     PrimeNgModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgOtpInputModule
   ]
 })
 export class AuthenticationModule { }

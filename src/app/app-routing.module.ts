@@ -7,7 +7,8 @@ const routes: Routes = [
     { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
     { path: 'products', loadChildren: () => import('./modules/products/products.module').then(m => m.ProductsModule) },
     { path: 'cart', loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule) },
-    { path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) }
+    { path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
+    { path: 'our-info', loadChildren: () => import('./modules/our-info/our-info.module').then(m => m.OurInfoModule) }
   ]),
 ];
 

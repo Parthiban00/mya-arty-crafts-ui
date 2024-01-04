@@ -1,4 +1,36 @@
-<div class="footer bg-primary text-sm w-full flex flex-column align-items-center justify-content-center text-center">
+<!-- <div class="footer bg-primary text-sm w-full flex flex-column align-items-center justify-content-center text-center">
     <span>Testing Footer Angular with Prime NG</span>
+  </div> -->
+
+  <div class="grid footer bg-primary text-sm w-full flex flex-column">
+    <div class=" col-12 pt-3 pl-6">
+      <div class="grid">
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2">
+          <h2>INFORMATION</h2>
+          <div>
+            <ul class="list">
+              <li [routerLink]="['our-info/terms&conditions']">Terms & Conditions</li>
+              <li [routerLink]="['our-info/privacy-policy']">Privacy Policy</li>
+              <li [routerLink]="['our-info/refund-policy']">Refund Policy</li>
+              <li [routerLink]="['our-info/shipping-policy']">Shipping Policy</li>
+              <li [routerLink]="['our-info/terms-of-service']">Terms of Service</li>
+              <li [routerLink]="['our-info/exchange-policy']">Exchange Policy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2">
+          <h2>SERVICES</h2>
+          <div>
+            <ul class="list">
+              <li [routerLink]="['our-info/address']">Address</li>
+              <li [routerLink]="['our-info/contact-us']">Contact Us</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class=" text-sm w-full flex flex-column align-items-center justify-content-center text-center">
+        <span>Mya Arty Gifts. All Rights Reserved.</span>
+      </div>
+    </div>
   </div>
   
