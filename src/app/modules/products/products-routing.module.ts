@@ -11,11 +11,15 @@ const routes: Routes = [{
   path:'detail-view',
   component:ProductDetailViewComponent
 },
-{
-  path:'',
-  redirectTo:'list',
-  pathMatch:'full'
-}
+  {
+    path: ':categoryId',  // Add a route with a parameter
+    component: ProductsListComponent  // or the component you want to display for this route
+  },
+  {
+    path:'',
+    redirectTo:'list',
+    pathMatch:'full'
+  },
 ];
 
 @NgModule({

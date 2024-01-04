@@ -34,15 +34,3 @@ opacity: 1;
     overflow-y: hidden;
     white-space: nowrap;
 }
-
-.flex-container {
-    display: flex;
-    overflow-x: auto;
-    /* Add any additional flex container properties here */
-  }
-
-  .fixed-width-div {
-    flex: 0 0 270px; /* This sets the flex-grow, flex-shrink, and flex-basis properties */
-    width: 270px;    /* This sets the width of the div */
-    /* Add any additional styles for the div here */
-  }

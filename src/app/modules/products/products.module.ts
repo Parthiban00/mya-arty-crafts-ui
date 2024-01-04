@@ -8,8 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { ProudctCardComponent } from 'src/app/components/standalone/proudct-card/proudct-card.component';
 import { ProductDetailViewComponent } from './product-detail-view/product-detail-view.component';
 import { DynamicFormBuilderComponent } from 'src/app/components/standalone/dynamic-form-builder/dynamic-form-builder.component';
-
-
+import { TitleDividerComponent } from 'src/app/components/standalone/title-divider/title-divider.component';
+import { CarouselSliderComponent } from 'src/app/components/standalone/carousel-slider/carousel-slider.component';
+import { ReviewsComponent } from 'src/app/components/standalone/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,10 @@ import { DynamicFormBuilderComponent } from 'src/app/components/standalone/dynam
     PrimeNgModule,
     FormsModule,
     ProudctCardComponent,
-    DynamicFormBuilderComponent
+    DynamicFormBuilderComponent,
+    TitleDividerComponent,
+    CarouselSliderComponent,
+    ReviewsComponent
   ]
 })
 export class ProductsModule { }

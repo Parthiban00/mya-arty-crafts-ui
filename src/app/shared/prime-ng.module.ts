@@ -34,7 +34,10 @@ import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
 import { SplitterModule } from 'primeng/splitter';
 import { SidebarModule } from 'primeng/sidebar';
-
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from 'primeng/api';
+import { PaginatorModule } from 'primeng/paginator';
+import { SliderModule } from 'primeng/slider';
 @NgModule({
   declarations: [],
   imports: [
@@ -72,7 +75,10 @@ import { SidebarModule } from 'primeng/sidebar';
     GalleriaModule,
     ImageModule,
     SplitterModule,
-    SidebarModule
+    SidebarModule,
+    MessagesModule,
+    PaginatorModule,
+    SliderModule
   ],
   exports: [
     ToolbarModule,
@@ -108,7 +114,13 @@ import { SidebarModule } from 'primeng/sidebar';
     GalleriaModule,
     ImageModule,
     SplitterModule,
-    SidebarModule
+    SidebarModule,
+    MessagesModule,
+    PaginatorModule,
+    SliderModule
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class PrimeNgModule { }

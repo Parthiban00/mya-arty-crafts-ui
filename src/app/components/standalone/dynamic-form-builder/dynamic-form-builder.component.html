@@ -1,11 +1,55 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div *ngFor="let field of formFields">
-      <label>{{ field.label }}</label>
-      <ng-container [ngSwitch]="field.type">
-        <input *ngSwitchCase="'text input'" type="text" [formControlName]="field.label" />
-        <p-fileUpload *ngSwitchCase="'file upload'" name="file"></p-fileUpload>
-      </ng-container>
+  <div *ngFor="let field of formFields">
+    <ng-container [ngSwitch]="field.type">
+      <!-- <input *ngSwitchCase="'text input'" type="text" [formControlName]="field.label" /> -->
+      <div class="grid" *ngSwitchCase="'text input'">
+        <div class="col-12 md:col-6 lg:col-6 xl:col-6 p-1">
+          <div class="field">
+            <!-- <input type="text" [formControlName]="field.label" [name]="field.label" class="p-inputtext-sm w-full"
+              pInputText [placeholder]="field.placeholder" /> -->
+            <div class="flex flex-column gap-2">
+              <label [htmlFor]="field.label">{{field.label}}</label>
+              <input pInputText id="username" [formControlName]="field.control" [name]="field.control" [placeholder]="field.placeholder"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid" *ngSwitchCase="'file upload'">
+        <div class="col-12 md:col-6 lg:col-6 xl:col-6 p-1">
+          <div class="field">
+            <div class="card ">
+              <p-toast></p-toast>
+              <p-fileUpload class="profile-file-upload" name="myfile[]" [files]="uploadedFileProfile"
+                [customUpload]="true" (uploadHandler)="onBasicUpload($event, field.control)" accept="image/*"
+                [maxFileSize]="500000" [auto]="true" [chooseLabel]="field.label" chooseIcon="home"
+                (onRemove)="onFileRemove( field.control)">
+                <ng-template let-file pTemplate="file" *ngIf="form.get(field.control+'_base64')?.value">
+                  <div class="grid">
+                    <div class="col-6" style="height: 100%;"><img [src]="form.get(field.control+'_base64')?.value"
+                        class="custom-img-view">
+                    </div>
+                    <div class="col-6 custom-img-clear-btn flex justify-content-end align-items-center"><p-button
+                        icon="pi pi-times" styleClass="p-button-rounded p-button-danger"
+                        (click)="onFileRemove( field.control)"></p-button></div>
+                  </div>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <p-fileUpload *ngSwitchCase="'file upload'" name="file"></p-fileUpload> -->
+
+
+    </ng-container>
+  </div>
+  <div class="grid">
+    <div class="col-12 md:col-6 lg:col-6 xl:col-6 p-1">
+      <!-- <button type="submit">Submit</button> -->
+      <p-button class="w-full" type="submit" label="Add To Cart"></p-button>
     </div>
-  
-    <button type="submit">Submit</button>
-  </form>
+  </div>
+</form>

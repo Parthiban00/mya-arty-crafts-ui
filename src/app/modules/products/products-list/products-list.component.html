@@ -1,31 +1,111 @@
 <div class="products-list-container p-3">
+
     <div class="grid">
-        <div class="col-12 md:col-12 lg:col-12 font-bold h-5rem">
+        <div class="col-12 md:col-3 lg:col-3 xl:col-2 filter-side-bar bg-white border-round-md">
+            <div class="card">
+<div class="card font-bold">
+    Filter
+</div>
+                <div class="flex flex-column gap-2 mt-5">
+                    <label>Category</label>
+                    <p-dropdown class="w-full" [options]="categories" [(ngModel)]="selectedCategory" optionLabel="name"
+                    [filter]="true" filterBy="name" [showClear]="true" placeholder="Select Category" (ngModelChange)="onDropdownChange($event)">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="flex align-items-center gap-2" *ngIf="selectedCategory">
+                            <div>{{ selectedCategory.name }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-country pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ country.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                   
+                  </div>
     
-            <p-divider align="center">
-                <div class="inline-flex align-items-center">
-                    <i class="pi pi-user mr-2"></i>
-                    <b>  Category Products</b>
+    
+               
+            </div>
+    
+            <div class="card flex  mt-5">
+                <div class="flex flex-column gap-2">
+                    <div *ngFor="let category of filterOptions" class="field-checkbox">
+                        <p-checkbox name="group" [value]="category" (ngModelChange)="onCheckboxChange($event)" [(ngModel)]="selectedFilters" [inputId]="category.key"></p-checkbox>
+                        <label [for]="category.key">{{ category.name }}</label>
+                    </div>
                 </div>
-            </p-divider>
-        </div> 
-   </div>
-    <div class="grid">
-        <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2 p-2" *ngFor="let product of productDetils">
-           <app-proudct-card [product]="product"></app-proudct-card>
-        </div>    
+            </div>
+        </div>
+        <div class="col-12 md:col-9 lg:col-9 xl:col-10">
+
+            <div class="grid">
+                <div class="col-12 md:col-12 lg:col-12 font-bold h-5rem">
+        
+                    <p-divider align="center">
+                        <div class="inline-flex align-items-center">
+                            <i class="pi pi-user mr-2"></i>
+                            <b> {{dividerTitle}}</b>
+                        </div>
+                    </p-divider>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 sm:col-6 md:col-4 lg:col-4 xl:col-2 p-2" *ngFor="let product of productDetils">
+                    <app-proudct-card [product]="product"></app-proudct-card>
+                </div>
+            </div>
+        
+            <!-- paginator -->
+            <div class="card flex justify-content-center" styleClass="w-30rem">
+                <p-paginator class="w-full" (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows"
+                    [totalRecords]="totalRecords" [rowsPerPageOptions]="[25, 50, 100]"></p-paginator>
+            </div>
+        </div>
     </div>
 
-    <!-- <p-splitter [panelSizes]="[30, 70]" [style]="{ height: '100%' }" styleClass="mb-5">
-        <ng-template pTemplate>
-            <div class="col flex align-items-center justify-content-center">Panel 1</div>
-        </ng-template>
-        <ng-template pTemplate>
-            <div class="col">    <div class="grid">
-                <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2 p-2" *ngFor="let product of productDetils">
-                   <app-proudct-card [product]="product"></app-proudct-card>
-                </div>    
-            </div></div>
-        </ng-template>
-    </p-splitter> -->
+
+
+
+    <p-button icon="pi pi-filter-fill" (click)="sidebarVisible = true" class="side-bar-open-btn" styleClass="p-button-rounded filter-button"></p-button>
 </div>
+
+<p-sidebar [(visible)]="sidebarVisible">
+    <ng-template pTemplate="header">Filter</ng-template>
+    <ng-template pTemplate="content">
+        <div class="card">
+
+            <div class="flex flex-column gap-2">
+                <label>Category</label>
+                <p-dropdown class="w-full" [options]="categories" [(ngModel)]="selectedCategory" optionLabel="name"
+                [filter]="true" filterBy="name" [showClear]="true" placeholder="Select Category" (ngModelChange)="onDropdownChange($event)">
+                <ng-template pTemplate="selectedItem">
+                    <div class="flex align-items-center gap-2" *ngIf="selectedCategory">
+                        <div>{{ selectedCategory.name }}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-country pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ country.name }}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+               
+              </div>
+
+
+           
+        </div>
+
+        <div class="card flex  mt-5">
+            <div class="flex flex-column gap-2">
+                <div *ngFor="let category of filterOptions" class="field-checkbox">
+                    <p-checkbox name="group" [value]="category" (ngModelChange)="onCheckboxChange($event)" [(ngModel)]="selectedFilters" [inputId]="category.key"></p-checkbox>
+                    <label [for]="category.key">{{ category.name }}</label>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+    <ng-template pTemplate="footer">Mya Arty Gifts</ng-template>
+</p-sidebar>

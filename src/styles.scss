@@ -4,6 +4,8 @@
 // 3rd party libraries
 @import "~primeng/resources/themes/lara-light-indigo/theme.css";
 @import "~primeng/resources/primeng.css";
+@import "./assets/theme/responsive.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 body {
     font-family: var(--font-family);
@@ -167,40 +169,6 @@ body {
     }
 }
 
-@media screen and (max-width: 2000px) {
-    #pr_id_3 .p-carousel-item {
-        padding: 10px !important;
-    }
-} 
-
-@media screen and (max-width: 1000px)
-{
-#pr_id_6 .p-carousel-item {
-    padding: 10px !important;
-}
-}
-
-@media screen and (max-width: 1220px)
-{
-#pr_id_6 .p-carousel-item {
-    padding: 10px !important;
-}
-}
-
-@media screen and (max-width: 1500px)
-{
-#pr_id_6 .p-carousel-item {
-    padding: 10px !important;
-}
-}
-
-@media screen and (max-width: 2000px)
-{
-#pr_id_6 .p-carousel-item {
-    padding: 10px !important;
-}
-}
-
 .p-galleria-content {
     height: 100%;
 
@@ -224,4 +192,123 @@ body {
     background-repeat: no-repeat !important; 
     // background-size: cover !important; 
     background-position: center !important;
+}
+
+.profile-file-upload .p-fileupload-buttonbar .p-button::after {
+    content: "\A";
+  }
+
+  .review-btn-container{
+    .p-button {
+        width: fit-content !important;
+    }
+  }
+
+  .flex-container {
+    display: flex;
+    overflow-x: auto;
+    /* Add any additional flex container properties here */
+  }
+
+  .fixed-width-div {
+    flex: 0 0 270px; /* This sets the flex-grow, flex-shrink, and flex-basis properties */
+    width: 270px;    /* This sets the width of the div */
+    /* Add any additional styles for the div here */
+  }
+
+  .footer-cart {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: white;
+    text-align: center;
+    z-index: 1;
+ }
+
+ .footer-cart-small {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: white;
+    text-align: center;
+    z-index: 1;
+ }
+
+//  .p-carousel-items-content {
+//     overflow: hidden;
+//     width: 100%;
+//     // display: flex;
+//     // justify-content: center;
+// }
+
+.custom-carousel .ui-carousel-items-container {
+    display: flex;
+    justify-content: center;
+}
+
+.custom-carousel .ui-carousel-item {
+    flex: 0 0 auto; /* Prevent items from growing and shrinking */
+}
+
+
+
+//
+
+// @media screen and (max-width: 2000px){
+//     #pr_id_3 .p-carousel-item {
+//         flex: 0 0 25% !important;
+//     }
+// }
+
+// @media screen and (max-width: 1220px){
+//     #pr_id_3 .p-carousel-item {
+//         flex: 0 0 35% !important;
+//     }
+
+// }
+
+// @media screen and (max-width: 1000px){
+//     #pr_id_3 .p-carousel-item {
+//         flex: 0 0 40% !important;
+//     }
+
+// }
+
+// @media screen and (max-width: 800px){
+//     #pr_id_3 .p-carousel-item {
+//         flex: 0 0 50% !important;
+//     }
+
+// }
+
+// @media screen and (max-width: 580px){
+//     #pr_id_3 .p-carousel-item {
+//         flex: 0 0 100% !important;
+//     }
+
+// }
+
+// @media screen and (max-width: 550px){
+
+//     #pr_id_3 .p-carousel-item {
+//         flex: 1 0 100% !important;
+//     }
+// }
+
+// @media screen and (max-width: 1500px)
+// {
+// #pr_id_3 .p-carousel-item {
+//     flex: 0 0 30% !important;
+// }
+// }
+
+
+.filter-button{
+    position: fixed !important;
+    bottom: 20px;
+    right: 30px;
 }

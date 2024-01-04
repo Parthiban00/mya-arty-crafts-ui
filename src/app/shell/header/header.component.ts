@@ -28,9 +28,19 @@ export class HeaderComponent {
         routerLinkActive: 'active'
       },
       {
-        label: 'Products',
+        label: 'Shop',
         icon: 'pi pi-list',
         routerLink: '/products'
+      },
+      {
+        label: 'About Us',
+        icon: 'pi pi-list',
+        routerLink: '/about-us'
+      },
+      {
+        label: 'Contact',
+        icon: 'pi pi-list',
+        routerLink: '/contact'
       }
     ];
 

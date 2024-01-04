@@ -18,8 +18,8 @@
     </div>
 
     <div class="carousel-container" *ngSwitchCase="'chronicles'">
-        <p-carousel [value]="sliderData"  [circular]="false"
-            [responsiveOptions]="responsiveOptions" autoPlayInterval="'3000'" [circular]="true">
+        <p-carousel [value]="sliderData"  [circular]="true" styleClass="custom-carousel"
+            [responsiveOptions]="responsiveOptions">
             <ng-template let-sliderData pTemplate="item">
                 <app-chronicles-card [chronicles]="sliderData"></app-chronicles-card>
             </ng-template>

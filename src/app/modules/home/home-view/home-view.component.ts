@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventBusService } from 'src/app/services/event-bus.service';
 import { Banner } from 'src/app/shared/Interfaces/banner.interface';
 import { Chronicles } from 'src/app/shared/Interfaces/chronicle.interface';
@@ -17,7 +18,7 @@ export class HomeViewComponent {
   chronicleDataVisible: boolean = false;
   chronicleViewData : Chronicles = {imageUrl:'',content:''};
 
-  constructor(private eventBusService: EventBusService) { }
+  constructor(private eventBusService: EventBusService, private router: Router) { }
 
   ngOnInit() {
 
@@ -202,4 +203,10 @@ export class HomeViewComponent {
     }]
   }
 
+
+  // Call this function when you want to navigate to the page
+navigateToProductPage(categoryId: string) {
+  // Use navigate method to navigate to the page with the categoryId parameter
+  this.router.navigate(['/products', categoryId]);
+}
 }
