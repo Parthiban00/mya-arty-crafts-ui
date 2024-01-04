@@ -797,7 +797,7 @@
     border-radius: 6px;
   }
   .p-dropdown:not(.p-disabled):hover {
-    border-color: #3B82F6;
+    border-color: var(--primary-color);
   }
   .p-dropdown:not(.p-disabled).p-focus {
     outline: 0 none;
