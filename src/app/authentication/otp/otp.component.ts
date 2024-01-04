@@ -5,39 +5,41 @@ import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  selector: 'app-otp',
+  templateUrl: './otp.component.html',
+  styleUrls: ['./otp.component.scss']
 })
-export class SignInComponent {
-
-  @ViewChild('signUpFormRef') formFields!: ElementRef;
-
-  checked: boolean;
-  checked1: string = 'hi';
-  signInForm: FormGroup;
+export class OTPComponent {
+  otp: string = '';
+  showOtpComponent = true;
+  @ViewChild('ngOtpInput', { static: false }) ngOtpInput: any;
+  config = {
+    allowNumbersOnly: false,
+    length: 4,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '',
+    inputStyles: {
+      'width': '50px',
+      'height': '50px'
+    }
+  };
 
   constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private storageService: StorageService, private router: Router) {
-    this.checked = false;
-    this.signInForm = this.fb.group({
-      // username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      email: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$")]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    })
+  }
 
+
+  onOtpChange(otp: any) {
+    this.otp = otp;
   }
 
   ngOnInit() {
 
   }
 
-  get formAbstractControl(): { [key: string]: AbstractControl } {
-    return this.signInForm.controls;
-  }
-
   signIn() {
+    this.router.navigate(['']);
     // if (this.signInForm.valid) {
-      this.router.navigate(['/auth/OTP']);
 
     //   const data = this.signInForm.getRawValue();
     //   this.authenticationService.login(data).subscribe({

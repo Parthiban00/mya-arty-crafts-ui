@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from './helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    CommonModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

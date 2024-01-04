@@ -1,7 +1,7 @@
 <div class="h-screen flex justify-content-center align-items-center">
     <div class="h-auto w-20rem relative bg-white border-round">
-        <div class="profile-circle h-5rem w-5rem surface-400 -my-5 mx-auto border-circle bg-contain">
-        </div>
+        <!-- <div class="profile-circle h-5rem w-5rem surface-400 -my-5 mx-auto border-circle bg-contain">
+        </div> -->
         <form [formGroup]="signInForm" (ngSubmit)="signIn()" autocomplete="off" #signInFormRef>
             <div class="card text-center h-full p-4">
                 <div class="text-indigo-400">
@@ -35,7 +35,7 @@
                         <div class="col-6 text-right text-sm text-primary cursor-pointer" [routerLink]="['/auth/forget-password']">Forget Password?</div>
                     </div> -->
                     <div class="py-4 px-0">
-                        <p-button label="Log In" (click)="signIn()" styleClass="p-button-sm"></p-button>
+                        <p-button label="Proceed To Send OTP" (click)="signIn()" styleClass="p-button-sm"></p-button>
                     </div>
                     <!-- <div class="py-4 px-0 flex h-8rem justify-content-center align-items-center">
                         <button pButton type="button" [routerLink]="['/auth/sign-up']" class="newUser-btn" label="New User" icon="pi pi-user-plus" iconPos="right" class="p-button-text"></button>

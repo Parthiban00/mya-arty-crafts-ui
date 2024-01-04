@@ -225,3 +225,11 @@ body {
     // background-size: cover !important; 
     background-position: center !important;
 }
+
+ng-otp-input {
+    input:focus {
+        // border: solid 1px #a61a1a !important;
+        background-color: lightblue;
+        border: none;
+      }
+}
