@@ -38,6 +38,8 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
 import { SliderModule } from 'primeng/slider';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AccordionModule } from 'primeng/accordion';
 @NgModule({
   declarations: [],
   imports: [
@@ -78,7 +80,9 @@ import { SliderModule } from 'primeng/slider';
     SidebarModule,
     MessagesModule,
     PaginatorModule,
-    SliderModule
+    SliderModule,
+    DynamicDialogModule,
+    AccordionModule
   ],
   exports: [
     ToolbarModule,
@@ -117,7 +121,9 @@ import { SliderModule } from 'primeng/slider';
     SidebarModule,
     MessagesModule,
     PaginatorModule,
-    SliderModule
+    SliderModule,
+    DynamicDialogModule,
+    AccordionModule
   ],
   providers: [
     MessageService

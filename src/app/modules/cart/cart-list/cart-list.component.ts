@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart-list.component.scss']
 })
 export class CartListComponent {
+  items: any = [];
+  
+  constructor() { }
+
 
 }

@@ -1,95 +1,50 @@
 <div class="cart-list-container">
-    <div class="shopping-cart">
-        <!-- Title -->
-        <div class="title">
-          Shopping Bag
+  <div class="shopping-cart">
+    <!-- Title -->
+    <div class="header w-full flex justify-content-center align-items-center font-bold mb-4 text-2xl h-5rem"
+      style="background: var(--secondary-color); color: white;">
+      SHOPPING BAG
+    </div>
+
+    <app-items-list [itemList]="items"></app-items-list>
+
+    <div class="total-price-cotainer">
+      <div class="grid">
+        <div class="col-6 md:col-9 lg:col-9 xl:col-9 p-3">
+          <div class="grid">
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
+              Total Price (₹)
+            </div>
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
+              Shipping Charge (₹)
+            </div>
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
+              Payable Amount (₹)
+            </div>
+          </div>
         </div>
-       
-        <!-- Product #1 -->
-        <div class="item">
-          <div class="buttons">
-            <span class="delete-btn"></span>
+        <div class="col-6 md:col-3 lg:col-3 xl:col-3 p-3">
+          <div class="grid">
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
+              200.00
+            </div>
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
+              0.00
+            </div>
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
+              200.00
+            </div>
           </div>
-       
-          <div class="image">
-            <img src="../../../../assets/images/category_1.jpg" alt="" />
-          </div>
-       
-          <div class="description">
-            <span>Common Projects</span>
-            <span>Bball High</span>
-            <span>White</span>
-          </div>
-       
-          <div class="quantity">
-            <button class="plus-btn" type="button" name="button">
-              <img src="plus.svg" alt="" />
-            </button>
-            <input type="text" name="name" value="1">
-            <button class="minus-btn" type="button" name="button">
-              <img src="minus.svg" alt="" />
-            </button>
-          </div>
-       
-          <div class="total-price">$549</div>
-        </div>
-       
-        <!-- Product #2 -->
-        <div class="item">
-          <div class="buttons">
-            <span class="delete-btn"></span>
-          </div>
-       
-          <div class="image">
-            <img src="../../../../assets/images/category_2.jpg" alt=""/>
-          </div>
-       
-          <div class="description">
-            <span>Maison Margiela</span>
-            <span>Future Sneakers</span>
-            <span>White</span>
-          </div>
-       
-          <div class="quantity">
-            <button class="plus-btn" type="button" name="button">
-              <img src="plus.svg" alt="" />
-            </button>
-            <input type="text" name="name" value="1">
-            <button class="minus-btn" type="button" name="button">
-              <img src="minus.svg" alt="" />
-            </button>
-          </div>
-       
-          <div class="total-price">$870</div>
-        </div>
-       
-        <!-- Product #3 -->
-        <div class="item">
-          <div class="buttons">
-            <span class="delete-btn"></span>
-          </div>
-       
-          <div class="image">
-            <img src="../../../../assets/images/category_3.jpg" alt="" />
-          </div>
-       
-          <div class="description">
-            <span>Our Legacy</span>
-            <span>Brushed Scarf</span>
-            <span>Brown</span>
-          </div>
-       
-          <div class="quantity">
-            <button class="plus-btn" type="button" name="button">
-              <img src="plus.svg" alt="" />
-            </button>
-            <input type="text" name="name" value="1">
-            <button class="minus-btn" type="button" name="button">
-              <img src="minus.svg" alt="" />
-            </button>
-          </div>
-       
-          <div class="total-price">$349</div>
         </div>
       </div>
+      <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6 xl:col-6 p-3">
+          <p-button class="w-full" type="submit" styleClass="p-button-secondary" label="Save For Later"></p-button>
+        </div>
+        <div class="col-12 md:col-6 lg:col-6 xl:col-6 p-3">
+          <p-button class="w-full" type="submit" label="Proceed To Checkout" [routerLink]="['/checkout']"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

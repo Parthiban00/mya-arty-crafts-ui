@@ -19,7 +19,7 @@
 
 
     <div class="p-toolbar-group-end">
-        <p-button icon="pi pi-user" class="m-1" styleClass="p-button-rounded p-button-text"  [routerLink]="['/auth']"></p-button>
+        <p-button icon="pi pi-user" class="m-1" styleClass="p-button-rounded p-button-text"  (click)="navigateToProfile()"></p-button>
         <p-button icon="pi pi-shopping-cart" class="m-1" styleClass="p-button-rounded p-button-text"
          [routerLink]="['/cart']"></p-button>
     </div>

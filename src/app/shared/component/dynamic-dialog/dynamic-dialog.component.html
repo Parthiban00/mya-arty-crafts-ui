@@ -1,0 +1,31 @@
+<ng-container [ngSwitch]="dialogFor">
+    <div class="card" *ngSwitchCase="'orders-view'">
+
+        <p-accordion>
+            <p-accordionTab header="Total Amount: 230.00 - Ordered Date: 2024-1-1">
+                <app-items-list [itemList]="items" [from]="'order-status'"></app-items-list>
+
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+
+    <div class="card" *ngSwitchCase="'add-address'">
+
+        <div class="grid flex justify-content-center">
+            <div class="col-12 md:col-6 lg:col-4 xl:col-4">
+                <div class="flex flex-column gap-2">
+                    <label>Full Address</label>
+                    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="address"
+                        placeholder="Enter full address"></textarea>
+                </div>
+            </div>
+
+        </div>
+  
+        <div class="grid flex justify-content-center mt-3">
+            <div class="col-12 md:col-6 lg:col-4 xl:col-4">
+            <p-button class="w-full" type="submit" (click)="addAddress()" label="Submit"></p-button>
+        </div>
+        </div>
+    </div>
+</ng-container>

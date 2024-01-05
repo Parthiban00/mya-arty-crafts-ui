@@ -3,94 +3,136 @@
 /* Small devices (phones, 576px and below) */
 @media (max-width: 576px) {
     /* Add styles specific to small devices */
-    .footer-cart{
+    .footer-cart {
         display: none !important;
     }
 
-    .footer-cart-small{
+    .footer-cart-small {
         display: block !important;
     }
 
-    .filter-side-bar{
+    .filter-side-bar {
         display: none !important;
     }
 
-    .side-bar-open-btn{
+    .side-bar-open-btn {
         display: block !important;
     }
-  }
-  
-  /* Medium devices (tablets, 768px and below) */
-  @media (max-width: 768px) {
+}
+
+/* Medium devices (tablets, 768px and below) */
+@media (max-width: 768px) {
     /* Add styles specific to medium devices */
-    .footer-cart{
+    .footer-cart {
         display: none !important;
     }
 
-    .footer-cart-small{
+    .footer-cart-small {
         display: block !important;
     }
 
-    .filter-side-bar{
+    .filter-side-bar {
         display: none !important;
     }
 
-    .side-bar-open-btn{
+    .side-bar-open-btn {
         display: block !important;
     }
-  }
+}
 
-    // /* Large devices (desktops, 992px and below) */
-    // @media (max-width: 900px) {
-    //     /* Add styles specific to large devices */
-    //     .filter-side-bar{
-    //         display: none !important;
-    //     }
-    //   }
-      
-  
-  /* Large devices (desktops, 992px and below) */
-  @media (max-width: 992px) {
+// /* Large devices (desktops, 992px and below) */
+// @media (max-width: 900px) {
+//     /* Add styles specific to large devices */
+//     .filter-side-bar{
+//         display: none !important;
+//     }
+//   }
+
+/* Large devices (desktops, 992px and below) */
+@media (max-width: 992px) {
     /* Add styles specific to large devices */
-  }
-  
-  /* Extra large devices (large desktops, 1200px and below) */
-  @media (max-width: 1200px) {
+}
+
+/* Extra large devices (large desktops, 1200px and below) */
+@media (max-width: 1200px) {
     /* Add styles specific to extra large devices */
-    .footer-cart{
+    .footer-cart {
         display: block;
     }
 
-    .footer-cart-small{
-        display: none ;
+    .footer-cart-small {
+        display: none;
     }
 
-    .filter-side-bar{
+    .filter-side-bar {
         display: block;
     }
 
-    .side-bar-open-btn{
+    .side-bar-open-btn {
         display: none;
     }
 }
 
-      /* Extra large devices (large desktops, 1200px and below) */
-  @media (max-width: 2000px) {
+
+
+
+/* Extra large devices (large desktops, 1200px and below) */
+@media (max-width: 2000px) {
     /* Add styles specific to extra large devices */
-    .footer-cart{
+    .footer-cart {
         display: block;
     }
 
-    .footer-cart-small{
+    .footer-cart-small {
         display: none;
     }
 
-    .filter-side-bar{
+    .filter-side-bar {
         display: block;
     }
 
-    .side-bar-open-btn{
+    .side-bar-open-btn {
         display: none;
     }
-  }
-  
+
+    body {
+        margin-top: 100px;
+    }
+}
+
+/* Large devices (desktops, 992px and below) */
+@media (max-width: 1200px) {
+    /* Add styles specific to large devices */
+
+    body {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 1144px) {
+    /* Add styles specific to large devices */
+
+    body {
+        margin-top: 170px;
+    }
+}
+
+@media (max-width: 960px) {
+    /* Add styles specific to large devices */
+
+    body {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 680px) {
+    body {
+        margin-top: 170px;
+    }
+}

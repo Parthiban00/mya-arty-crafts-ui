@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
+import { CommonService } from 'src/app/services/common.service';
 import { EventBusService } from 'src/app/services/event-bus.service';
 import { EventData } from 'src/app/shared/classes/event-class';
 
@@ -18,7 +20,7 @@ export class HeaderComponent {
   position: string = 'right';
   searchStr = new FormControl('');
 
-  constructor(private eventBusService: EventBusService) {
+  constructor(private eventBusService: EventBusService, private commonService: CommonService, private router: Router) {
 
     this.items = [
       {
@@ -49,8 +51,8 @@ export class HeaderComponent {
   ngOnInit() {
     // this.toggleMenu();
 
-    this.searchStr.valueChanges.pipe(debounceTime(300)).subscribe((value)=>{
-      
+    this.searchStr.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
+
     })
   }
 
@@ -67,5 +69,13 @@ export class HeaderComponent {
   showDialog(position: string) {
     this.position = position;
     this.visible = true;
+  }
+
+  navigateToProfile() {
+    if (this.commonService.isLoggedIn) {
+      this.router.navigate(['/my-account']);
+    } else {
+      this.router.navigate(['/auth'])
+    }
   }
 }

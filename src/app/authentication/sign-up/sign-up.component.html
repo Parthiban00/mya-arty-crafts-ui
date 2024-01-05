@@ -1,8 +1,8 @@
 <div class="h-screen flex justify-content-center align-items-center">
-    <div class="h-auto w-20rem relative bg-white border-round">
-        <div class="profile-circle h-5rem w-5rem surface-400 -my-5 mx-auto border-circle bg-contain">
+    <div class="h-auto w-27rem relative bg-white border-round" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+        <div class="profile-circle h-10rem w-10rem surface-400 -my-8 mx-auto border-circle bg-contain">
         </div>
-        <div class="card text-center h-full p-4">
+        <div class="card text-center h-full p-4 mt-8">
             <div class="text-indigo-400">
                 <h3>Sign Up</h3>
             </div>
@@ -10,27 +10,27 @@
                 <div class="field">
                     <span class="p-input-icon-left">
                         <i class="pi pi-user"></i>
-                        <input type="text"  class="p-inputtext-sm w-17rem" pInputText placeholder="Username" />
+                        <input type="text"  class="p-inputtext-sm w-17rem" pInputText placeholder="Full Name" />
                     </span>
                 </div>
                 <div class="field">
                     <span class="p-input-icon-left">
                         <i class="pi pi-lock"></i>
-                        <input type="password" class="p-inputtext-sm w-17rem" pInputText placeholder="Password" />
+                        <input type="email" class="p-inputtext-sm w-17rem" pInputText placeholder="Email" />
                     </span>
                 </div>
                 <div class="field">
                     <span class="p-input-icon-left">
                         <i class="pi pi-lock"></i>
-                        <input type="password" class="p-inputtext-sm w-17rem" pInputText placeholder="Confirm Password" />
+                        <input type="text" class="p-inputtext-sm w-17rem" pInputText placeholder="Mobile No." />
                     </span>
                 </div>
                 
-                <div class="py-4 px-0">
-                    <p-button label="Submit" [routerLink]="['/auth/sign-in']" styleClass="p-button-sm"></p-button>
+                <div class="py-4 px-0 flex justify-content-center align-items-center">
+                    <p-button label="Submit" class="w-15rem" [routerLink]="['/auth/sign-in']" styleClass="p-button-sm"></p-button>
                 </div>
                 <div class="py-4 px-0 flex h-8rem justify-content-center align-items-center">
-                    <button pButton type="button" [routerLink]="['/auth/sign-in']" class="newUser-btn" label="Sign In" icon="pi pi-sign-in" iconPos="right" class="p-button-text"></button>
+                    <button pButton type="button" [routerLink]="['/auth/sign-in']" label="Already have an account ? Sign In" icon="pi pi-sign-in" iconPos="right" class="p-button-text w-15rem"></button>
                 </div>
             </div>
 

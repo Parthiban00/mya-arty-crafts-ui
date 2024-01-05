@@ -33,6 +33,13 @@ export class ProductDetailViewComponent {
 
   position: string = 'bottom';
 
+  availableSizes = [
+    { size: '2x6', price: 200 },
+    { size: '4x8', price: 300 },
+];
+
+selectedSize:any;
+
   positionOptions = [
     {
       label: 'Bottom',

@@ -1,0 +1,63 @@
+.checkout-container{
+    width: 750px;
+    height: auto;
+    background: white;
+    margin: 40px auto;
+}
+
+@media (max-width: 800px) {
+    .checkout-container {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+}
+
+.address-box-container{
+  height: 200px;
+  width: 100%;
+  background:  rgb(245 93 93 / 8%);
+  border-radius: 10px;
+  border: 1px solid #c5c5c573;
+}
+
+.address-selected {
+  border: 5px solid #00bb00 !important;
+}
+
+.orders-box-container{
+    height: 100px;
+    width: 100%;
+    background:  rgb(245 93 93 / 8%);
+    border-radius: 10px;
+    border: 1px solid #c5c5c573;
+  }
+
+  .card-coupon {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    background: orange;
+    border: none;
+    color: #fff;
+    height: auto;
+    // display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image {
+    position: absolute;
+    opacity: .1;
+    left: 0;
+    top: 0;
+  }
+  
+  .image2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: .1;
+  }
+  
