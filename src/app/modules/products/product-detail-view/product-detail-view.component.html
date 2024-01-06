@@ -10,7 +10,6 @@
                     <ng-template pTemplate="thumbnail" let-item>
                         <div class="grid grid-nogutter justify-content-center">
                             <img [src]="item.thumbnailImageSrc" style="width: 100px; height: 100px;" />
-
                         </div>
                     </ng-template>
                 </p-galleria>
@@ -24,53 +23,14 @@
                         Product Name
                     </div>
                     <div class="col-12 md:col-6 lg:col-6">
-                        lakjs ljsadlfkjalks jljasd lfjsdalkf jlkasjdf lkjaskldfjalksdjflaksjdfl
-                        ajsdlkfjlasdjflkasjdflkjasfoiwejlkfsfew oisjflkjs
+                       {{productDetails.description}}
                     </div>
 
                     <div class="col-12 md:col-12 lg:col-12 p-1">
-
-                        <!-- <div class="prices-container">
-                            <div class="prices-div" *ngFor="let prices of selectedProduct.prices; let i = index" [ngClass]="{'price-selected':prices.selected}" (click)="selectedPrice(i)">
-                                <div class="weight">
-                                    {{prices.weight}}
-                                </div>
-                                <div class="price">
-                                    ₹&nbsp;{{prices.productPrice}}
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <!-- <div class="prices-container">
-                            <div class="prices-div">
-                                <div class="weight">
-                                    3x3
-                                </div>
-                                <div class="price">
-                                    ₹&nbsp;400.00
-                                </div>
-                            </div>
-                            <div class="prices-div">
-                                <div class="weight">
-                                    3x3
-                                </div>
-                                <div class="price">
-                                    ₹&nbsp;400.00
-                                </div>
-                            </div>
-                            <div class="prices-div">
-                                <div class="weight">
-                                    3x3
-                                </div>
-                                <div class="price">
-                                    ₹&nbsp;400.00
-                                </div>
-                            </div>
-                        </div> -->
                         
                         <div class="flex flex-column gap-2">
                             <label class="font-bold">Available Sizes</label>
-                            <p-dropdown [options]="availableSizes" [(ngModel)]="selectedSize" optionLabel="size"></p-dropdown>
+                            <p-dropdown [options]="productDetails.prices" [(ngModel)]="selectedSize" optionLabel="size"></p-dropdown>
                         </div>
 
                     </div>
@@ -78,13 +38,13 @@
                     <div class="col-12 md:col-12 lg:col-12 font-bold p-1">
 
                         <div class="flex">
-                            <div class="original-price font-bold p-1" style="text-decoration: line-through;">
-                                Rs: 500.00
+                            <div class="original-price font-bold p-1" style="text-decoration: line-through;" *ngIf="productDetails.discount">
+                                Rs: {{commonService.originalPrice(selectedSize.price, productDetails.discount)}}
                             </div>
                             <div class="actual-price font-bold p-1" style="color: var(--primary-color)">
-                                Rs: 350.00
+                               Rs: {{selectedSize.price}}
                             </div>
-                            <div class="discount p-1">
+                            <div class="discount p-1" *ngIf="productDetails.discount">
                                 <p-tag value="Save 30%"></p-tag>
                             </div>
                         </div>
@@ -165,11 +125,11 @@
                                 Product Name
                             </div>
                             <div class="col-12 flex">
-                                <div class="original-price font-bold p-1" style="text-decoration: line-through;">
-                                    Rs: 500.00
+                                <div class="original-price font-bold p-1" style="text-decoration: line-through;" *ngIf="productDetails.discount">
+                                    Rs: {{commonService.originalPrice(selectedSize.price, productDetails.discount)}}
                                 </div>
                                 <div class="actual-price font-bold p-1" style="color: var(--primary-color)">
-                                    Rs: 350.00
+                                    Rs: {{selectedSize.price}}
                                 </div>
                             </div>
                         </div>
@@ -180,7 +140,7 @@
             <div class="col-12 md:col-4 lg:col-4 xl:col-4 p-3 flex justify-content-center align-items-center">
                     <div class="flex flex-column gap-2">
                         <label>Available Sizes</label>
-                        <p-dropdown [options]="availableSizes" [(ngModel)]="selectedSize" optionLabel="size"></p-dropdown>
+                        <p-dropdown [options]="productDetails.prices" [(ngModel)]="selectedSize" optionLabel="size"></p-dropdown>
                     </div>
             </div>
 

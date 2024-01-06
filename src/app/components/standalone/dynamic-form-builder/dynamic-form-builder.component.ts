@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrimeNgModule } from 'src/app/shared/prime-ng.module';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DynamicForm } from 'src/app/shared/Interfaces/product.interface';
 @Component({
   selector: 'app-dynamic-form-builder',
   standalone: true,
@@ -14,7 +15,7 @@ export class DynamicFormBuilderComponent {
   profileFileURL: string | ArrayBuffer | null = '';
   form!: FormGroup;
 
-  formFields = [
+  formFields: DynamicForm[] = [
     {
       label: 'Name',
       control: 'name',
@@ -52,7 +53,7 @@ export class DynamicFormBuilderComponent {
     this.form = this.fb.group(formControls);
 
 
-    console.log(this.form.getRawValue())
+    console.log(this.form.getRawValue());
   }
 
   onSubmit(): void {

@@ -1,7 +1,9 @@
-import { Component, Input, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrimeNgModule } from 'src/app/shared/prime-ng.module';
 import { FormsModule } from '@angular/forms';
+import { Product } from 'src/app/shared/Interfaces/product.interface';
+import { CommonService } from 'src/app/services/common.service';
 
 
 @Component({
@@ -12,15 +14,21 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./proudct-card.component.scss']
 })
 export class ProudctCardComponent {
-  @Input('product') product: any;
-
+  @Input('product') product !: Product;
+  // @Output() messageEvent = new EventEmitter<string>();
+  
   ratingValue: number = 4;
 
-  constructor() { }
+  constructor(public commonService: CommonService) { }
 
   ngOnChanges(changes: any): void { }
 
   ngOnInit() { }
 
   ngOnDestroy() { }
+
+
+  // sendMessage() {
+  //   this.messageEvent.emit('Message from child');
+  // }
 }

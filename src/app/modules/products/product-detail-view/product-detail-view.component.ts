@@ -1,6 +1,9 @@
 import { Component, HostListener } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
-import { Product } from 'src/app/shared/Interfaces/product.interface';
+import { Prices, Product } from 'src/app/shared/Interfaces/product.interface';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-detail-view',
@@ -10,8 +13,13 @@ import { Product } from 'src/app/shared/Interfaces/product.interface';
 export class ProductDetailViewComponent {
 
   rating: number = 4;
-  suggestedProducts: Product[] =[];
-  showFooterCart:boolean = false;
+  suggestedProducts: Product[] = [];
+  showFooterCart: boolean = false;
+  productId: string = '';
+  subscriptions: Subscription[] = [];
+  productDetails!: Product;
+  selectedSize!: Prices;
+
   images: any[] = [{
     itemImageSrc: 'assets/images/category_1.jpg',
     thumbnailImageSrc: 'assets/images/category_1.jpg',
@@ -33,12 +41,6 @@ export class ProductDetailViewComponent {
 
   position: string = 'bottom';
 
-  availableSizes = [
-    { size: '2x6', price: 200 },
-    { size: '4x8', price: 300 },
-];
-
-selectedSize:any;
 
   positionOptions = [
     {
@@ -74,9 +76,7 @@ selectedSize:any;
     }
   ];
 
-  productReviewDetails: any = {
-
-  }
+  productReviewDetails: any = {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -92,9 +92,97 @@ selectedSize:any;
     }
   }
 
-  constructor(public commonService:CommonService) { }
+  constructor(public commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService) {
+    // Subscribe to the route parameter changes
+    const routeSubscription = this.activatedRoute.params.subscribe(params => {
+      this.productId = params['productId'];
+
+      if (this.productId) {
+        this.getProductById();
+      } else {
+        this.commonService.showError('Product', 'Product not present!')
+      }
+    });
+
+    this.subscriptions.push(routeSubscription);
+  }
+
+  getProductById() {
+    // dummy data
+    this.productDetails = {
+      name: 'Product Name',
+      tag: true,
+      tagContent: 'Trending',
+      discount: 20,
+      rating: 4,
+      originalPrice: 400.00,
+      actualPrice: 300.00,
+      imageUrl: 'assets/images/category_1.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      },
+      {
+        size: '2x8',
+        price: 300.00
+      }]
+    }
+
+    const getProductApi = this.productService.getProductById(this.productId).subscribe({
+      next: resData => {
+        if (resData.status) {
+          this.productDetails = resData.data;
+          this.getSuggestedProducts();
+        } else {
+          this.commonService.showSuccess('Product', 'Error fetching data!');
+        }
+      },
+      error: err => {
+        this.commonService.showError('Product', 'Error fetching data!');
+      },
+      complete() {
+
+      },
+    })
+
+    this.subscriptions.push(getProductApi);
+  }
+
+  getSuggestedProducts() {
+    const getProductApi = this.productService.getProductById(this.productDetails.categoryId).subscribe({
+      next: resData => {
+        if (resData.status) {
+          this.suggestedProducts = resData.data;
+        } else {
+          this.commonService.showSuccess('Product', 'Error fetching data!');
+        }
+      },
+      error: err => {
+        this.commonService.showError('Product', 'Error fetching data!');
+      },
+      complete() {
+
+      },
+    })
+
+    this.subscriptions.push(getProductApi);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    });
+  }
 
   ngOnInit() {
+    //dymmy data
     this.suggestedProducts = [{
       name: 'Product Name',
       tag: true,
@@ -103,7 +191,16 @@ selectedSize:any;
       rating: 4,
       originalPrice: 400.00,
       actualPrice: 300.00,
-      imageUrl: 'assets/images/category_1.jpg'
+      imageUrl: 'assets/images/category_1.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      }]
     },
     {
       name: 'Product Name',
@@ -113,7 +210,16 @@ selectedSize:any;
       rating: 4,
       originalPrice: 400.00,
       actualPrice: 300.00,
-      imageUrl: 'assets/images/category_2.jpg'
+      imageUrl: 'assets/images/category_2.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      }]
     },
     {
       name: 'Product Name',
@@ -123,7 +229,16 @@ selectedSize:any;
       rating: 4,
       originalPrice: 400.00,
       actualPrice: 300.00,
-      imageUrl: 'assets/images/category_3.jpg'
+      imageUrl: 'assets/images/category_3.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      }]
     }, {
       name: 'Product Name',
       tag: true,
@@ -132,7 +247,16 @@ selectedSize:any;
       rating: 4,
       originalPrice: 400.00,
       actualPrice: 300.00,
-      imageUrl: 'assets/images/category_2.jpg'
+      imageUrl: 'assets/images/category_2.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      }]
     },
     {
       name: 'Product Name',
@@ -142,7 +266,16 @@ selectedSize:any;
       rating: 4,
       originalPrice: 400.00,
       actualPrice: 300.00,
-      imageUrl: 'assets/images/category_1.jpg'
+      imageUrl: 'assets/images/category_1.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      }]
     },
     {
       name: 'Product Name',
@@ -152,7 +285,16 @@ selectedSize:any;
       rating: 4,
       originalPrice: 400.00,
       actualPrice: 300.00,
-      imageUrl: 'assets/images/category_3.jpg'
+      imageUrl: 'assets/images/category_3.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      }]
     }, {
       name: 'Product Name',
       tag: true,
@@ -161,7 +303,16 @@ selectedSize:any;
       rating: 4,
       originalPrice: 400.00,
       actualPrice: 300.00,
-      imageUrl: 'assets/images/category_2.jpg'
+      imageUrl: 'assets/images/category_2.jpg',
+      _id: '1',
+      quantity: 0,
+      categoryId: '1',
+      description: `  It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.`,
+      prices: [{
+        size: '2x4',
+        price: 200.00
+      }]
     }]
   }
 }

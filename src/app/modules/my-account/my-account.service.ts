@@ -17,4 +17,8 @@ export class MyAccountService {
   getAllAddresses(): Observable<any> {
     return this.webservice.get(`my-account/getAllAddress/${this.commonService.userId}`);
   }
+
+  getAccountInfo(): Observable<any> {
+    return this.webservice.get(`my-account/getAccountInfo/${this.commonService.userId}`);
+  }
 }

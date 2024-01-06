@@ -1,5 +1,4 @@
 <div class="products-list-container p-3">
-
     <div class="grid">
         <div class="col-12 md:col-3 lg:col-3 xl:col-2 filter-side-bar bg-white border-round-md">
             <div class="card">
@@ -16,17 +15,13 @@
                                 <div>{{ selectedCategory.name }}</div>
                             </div>
                         </ng-template>
-                        <ng-template let-country pTemplate="item">
+                        <ng-template let-category pTemplate="item">
                             <div class="flex align-items-center gap-2">
-                                <div>{{ country.name }}</div>
+                                <div>{{ category.name }}</div>
                             </div>
                         </ng-template>
                     </p-dropdown>
-
                 </div>
-
-
-
             </div>
 
             <div class="card flex  mt-5">
@@ -66,9 +61,6 @@
         </div>
     </div>
 
-
-
-
     <p-button icon="pi pi-filter-fill" (click)="sidebarVisible = true" class="side-bar-open-btn"
         styleClass="p-button-rounded filter-button"></p-button>
 </div>
@@ -88,9 +80,9 @@
                             <div>{{ selectedCategory.name }}</div>
                         </div>
                     </ng-template>
-                    <ng-template let-country pTemplate="item">
+                    <ng-template let-category pTemplate="item">
                         <div class="flex align-items-center gap-2">
-                            <div>{{ country.name }}</div>
+                            <div>{{ category.name }}</div>
                         </div>
                     </ng-template>
                 </p-dropdown>

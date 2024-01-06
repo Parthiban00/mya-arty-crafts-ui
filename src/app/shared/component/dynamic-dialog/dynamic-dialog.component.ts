@@ -25,28 +25,13 @@ export class DynamicDialogComponent {
     console.log('Passed Data:', passedData);
   }
 
-  addAddress() {
-    const reqData = {
-      userId: this.commonService.userId,
-      address: this.address
+  submit() {
+    const submitData = {
+      dialogFor: this.dialogFor,
+      data: { address: this.address }
     }
 
-    const addAddressApi = this.myAccountService.addAddress(reqData).subscribe({
-      next: resData => {
-        if (resData.status) {
-          this.ref.close();
-        } else {
-        }
-      },
-      error: err => {
-
-      },
-      complete() {
-
-      },
-    })
-
-    this.subscriptions.push(addAddressApi);
+    this.ref.close(submitData);
   }
 
   ngOnDestroy() {

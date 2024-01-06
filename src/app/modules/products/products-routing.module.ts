@@ -8,7 +8,7 @@ const routes: Routes = [{
   component:ProductsListComponent
 },
 {
-  path:'detail-view',
+  path:'detail-view/:productId',
   component:ProductDetailViewComponent
 },
   {

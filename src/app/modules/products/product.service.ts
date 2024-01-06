@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WebService } from '../../services/web.service'
+import { WebService } from '../../services/web.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,11 @@ export class ProductService {
     return this.webservice.post('products/getAll', data);
   }
 
-  logout(): Observable<any> {
-    return this.webservice.get('auth/signout');
+  getProductById(id: string): Observable<any> {
+    return this.webservice.get(`/products/getProductById/${id}`);
+  }
+
+  getProductByCategoryId(id: string): Observable<any> {
+    return this.webservice.get(`/products/getProductByCategoryId/${id}`);
   }
 }

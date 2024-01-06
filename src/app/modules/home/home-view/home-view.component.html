@@ -6,7 +6,7 @@
     <app-title-divider [title]="'Offers'" [icon]="'pi pi-percentage'"></app-title-divider>
 
     <div class="grid">
-        <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2 p-2" *ngFor="let product of productDetails">
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3 xl:col-2 p-2" *ngFor="let product of productDetails" (click)="navigateToProductDetails(product)">
             <app-proudct-card [product]="product"></app-proudct-card>
         </div>
     </div>
@@ -20,7 +20,7 @@
     </div> -->
 
     <div class="flex-container">
-        <div class="fixed-width-div p-2" *ngFor="let product of recentSellingProducts">
+        <div class="fixed-width-div p-2" *ngFor="let product of recentSellingProducts" (click)="navigateToProductDetails(product)">
             <app-proudct-card [product]="product"></app-proudct-card>
         </div>
     </div>
