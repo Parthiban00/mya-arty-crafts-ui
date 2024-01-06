@@ -13,6 +13,12 @@ export interface Product {
   prices: Prices[];
   price?: Prices,
   description: string;
+  productDetails?: string[];
+  reviews?: Review[];
+  customizable?: boolean;
+  formFields?:DynamicForm[];
+  formData?:any;
+  images?: Array<{imageUrl:string}>;
 }
 
 export interface Prices {
@@ -33,7 +39,9 @@ export interface Category {
   _id: string;
 }
 
-// export interface Review {
-//     : string;
-//   _id: string;
-// }
+export interface Review {
+  fullName: string;
+  _id: string;
+  rating: number;
+  comments: string
+}

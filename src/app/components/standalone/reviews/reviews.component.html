@@ -7,7 +7,7 @@
                 </div>
 
                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-1 font-bold text-8xl">
-                    4.0
+                    {{ratingAverage}}
                 </div>
                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-1 ">
                     <p-rating [readonly]="true" [(ngModel)]="rating" [cancel]="false"></p-rating>
@@ -23,83 +23,23 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card" *ngIf="reviews">
     <div class="flex-container justify-content-center">
-        <div class="fixed-width-div p-2">
-           <div class="review-box-container p-2">
-            <div class="grid">
-                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                    Parthi Ram
-                </div>
-                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                    <p-rating [readonly]="true" [(ngModel)]="rating" [cancel]="false"></p-rating>
-                </div>
-                <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                    lasjfd ljasdflkjasldkfjldsakjf lasdjf lksjdflksadj flkjsad flksdjflksaj flsj
+        <div class="fixed-width-div p-2" *ngFor="let list of reviews">
+            <div class="review-box-container p-2">
+                <div class="grid">
+                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
+                        {{list.fullName}}
+                    </div>
+                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
+                        <p-rating [readonly]="true" [(ngModel)]="list.rating" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
+                        {{list.comments}}
+                    </div>
                 </div>
             </div>
-           </div>
         </div>
-        <div class="fixed-width-div p-2">
-            <div class="review-box-container p-2">
-             <div class="grid">
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     Parthi Ram
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     <p-rating [readonly]="true" [(ngModel)]="rating" [cancel]="false"></p-rating>
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                     lasjfd ljasdflkjasldkfjldsakjf lasdjf lksjdflksadj flkjsad flksdjflksaj flsj
-                 </div>
-             </div>
-            </div>
-         </div>
-         <div class="fixed-width-div p-2">
-            <div class="review-box-container p-2">
-             <div class="grid">
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     Parthi Ram
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     <p-rating [readonly]="true" [(ngModel)]="rating" [cancel]="false"></p-rating>
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                     lasjfd ljasdflkjasldkfjldsakjf lasdjf lksjdflksadj flkjsad flksdjflksaj flsj
-                 </div>
-             </div>
-            </div>
-         </div>
-         <div class="fixed-width-div p-2">
-            <div class="review-box-container p-2">
-             <div class="grid">
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     Parthi Ram
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     <p-rating [readonly]="true" [(ngModel)]="rating" [cancel]="false"></p-rating>
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                     lasjfd ljasdflkjasldkfjldsakjf lasdjf lksjdflksadj flkjsad flksdjflksaj flsj
-                 </div>
-             </div>
-            </div>
-         </div>
-         <div class="fixed-width-div p-2">
-            <div class="review-box-container p-2">
-             <div class="grid">
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     Parthi Ram
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold">
-                     <p-rating [readonly]="true" [(ngModel)]="rating" [cancel]="false"></p-rating>
-                 </div>
-                 <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                     lasjfd ljasdflkjasldkfjldsakjf lasdjf lksjdflksadj flkjsad flksdjflksaj flsj
-                 </div>
-             </div>
-            </div>
-         </div>
 
     </div>
 </div>

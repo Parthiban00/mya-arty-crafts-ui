@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Review } from '../shared/Interfaces/product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,15 @@ export class CommonService {
     this.messageService.add({ severity: 'error', summary, detail });
   }
 
-  originalPrice(actualPrice: number, discountPercentage:number) {
+  originalPrice(actualPrice: number, discountPercentage: number) {
     return ((discountPercentage / 100) * actualPrice) + actualPrice;
+  }
+
+  calculateAverageOfRating(reviews: Review[]) {
+    // Calculate the sum of ratings
+    const sumOfRatings = reviews.reduce((acc, { rating }) => acc + rating, 0);
+
+    // Calculate the average rating
+    return sumOfRatings / reviews.length;
   }
 }

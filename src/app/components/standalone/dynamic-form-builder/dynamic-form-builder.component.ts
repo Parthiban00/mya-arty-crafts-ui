@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrimeNgModule } from 'src/app/shared/prime-ng.module';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DynamicForm } from 'src/app/shared/Interfaces/product.interface';
+import { CommonService } from 'src/app/services/common.service';
 @Component({
   selector: 'app-dynamic-form-builder',
   standalone: true,
@@ -11,28 +12,14 @@ import { DynamicForm } from 'src/app/shared/Interfaces/product.interface';
   styleUrls: ['./dynamic-form-builder.component.scss']
 })
 export class DynamicFormBuilderComponent {
+  @Input('data') formFields: DynamicForm[] | any;
+  @Output() formData = new EventEmitter<string>();
+
   uploadedFileProfile: Array<any> = [];
   profileFileURL: string | ArrayBuffer | null = '';
   form!: FormGroup;
 
-  formFields: DynamicForm[] = [
-    {
-      label: 'Name',
-      control: 'name',
-      type: 'text input',
-      isRequired: true,
-      placeholder: 'Name'
-    },
-    {
-      label: 'Upload Photo',
-      control: 'fileUpload',
-      type: 'file upload',
-      isRequired: false,
-      placeholder: 'Upload File'
-    }
-  ];
-
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private commonService: CommonService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -40,7 +27,7 @@ export class DynamicFormBuilderComponent {
 
   buildForm(): void {
     const formControls: any = {};
-    this.formFields.forEach(field => {
+    this.formFields.forEach((field: any) => {
       // const validators = field.type === 'text input' ? [Validators.required] : null;
       const validators = field.isRequired ? [Validators.required] : null;
       formControls[field.control] = ['', validators];
@@ -61,6 +48,9 @@ export class DynamicFormBuilderComponent {
     if (this.form.valid) {
       // Process the form data
       console.log(this.form.value);
+      this.formData.emit(this.form.getRawValue());
+    } else {
+      this.commonService.showError('Form Invalid', 'Please enter all valid inputs!');
     }
   }
 

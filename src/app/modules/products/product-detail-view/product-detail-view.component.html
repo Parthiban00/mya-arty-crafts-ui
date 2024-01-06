@@ -2,14 +2,15 @@
     <div class="grid">
         <div class="col-12 md:col-12 lg:col-6 xl:col-6 p-1" style="min-height: calc(100vh - 186px) !important;">
             <div class="card h-full">
-                <p-galleria [value]="images" [thumbnailsPosition]="'left'" [responsiveOptions]="responsiveOptions"
-                    [containerStyle]="{ 'max-width': '100%', 'height': '100%' }" [numVisible]="5">
+                <p-galleria [value]="productDetails.images?productDetails.images:[]" [thumbnailsPosition]="'left'"
+                    [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '100%', 'height': '100%' }"
+                    [numVisible]="5">
                     <ng-template pTemplate="item" let-item>
-                        <p-image [src]="item.itemImageSrc" width="500" alt="Image" [preview]="true"></p-image>
+                        <p-image [src]="item.imageUrl?item.imageUrl:productDetails.imageUrl" width="500" alt="Image" [preview]="true"></p-image>
                     </ng-template>
                     <ng-template pTemplate="thumbnail" let-item>
                         <div class="grid grid-nogutter justify-content-center">
-                            <img [src]="item.thumbnailImageSrc" style="width: 100px; height: 100px;" />
+                            <img [src]="item.imageUrl?item.imageUrl:productDetails.imageUrl" style="width: 100px; height: 100px;" />
                         </div>
                     </ng-template>
                 </p-galleria>
@@ -20,17 +21,18 @@
             <div class="card">
                 <div class="grid">
                     <div class="col-12 md:col-12 lg:col-12 font-bold text-xl">
-                        Product Name
+                        {{productDetails.name}}
                     </div>
                     <div class="col-12 md:col-6 lg:col-6">
-                       {{productDetails.description}}
+                        {{productDetails.description}}
                     </div>
 
                     <div class="col-12 md:col-12 lg:col-12 p-1">
-                        
+
                         <div class="flex flex-column gap-2">
                             <label class="font-bold">Available Sizes</label>
-                            <p-dropdown [options]="productDetails.prices" [(ngModel)]="selectedSize" optionLabel="size"></p-dropdown>
+                            <p-dropdown [options]="productDetails.prices" [(ngModel)]="selectedSize"
+                                optionLabel="size"></p-dropdown>
                         </div>
 
                     </div>
@@ -38,11 +40,12 @@
                     <div class="col-12 md:col-12 lg:col-12 font-bold p-1">
 
                         <div class="flex">
-                            <div class="original-price font-bold p-1" style="text-decoration: line-through;" *ngIf="productDetails.discount">
+                            <div class="original-price font-bold p-1" style="text-decoration: line-through;"
+                                *ngIf="productDetails.discount">
                                 Rs: {{commonService.originalPrice(selectedSize.price, productDetails.discount)}}
                             </div>
                             <div class="actual-price font-bold p-1" style="color: var(--primary-color)">
-                               Rs: {{selectedSize.price}}
+                                Rs: {{selectedSize.price}}
                             </div>
                             <div class="discount p-1" *ngIf="productDetails.discount">
                                 <p-tag value="Save 30%"></p-tag>
@@ -52,48 +55,37 @@
 
                     <div class="col-12 md:col-12 lg:col-12 p-1">
                         <app-title-divider [title]="'Customizable'" [icon]="'pi pi-user'"></app-title-divider>
-                        <app-dynamic-form-builder></app-dynamic-form-builder>
+                        <app-dynamic-form-builder [data]="productDetails.formFields" (formData)="receiveFormData($event)"></app-dynamic-form-builder>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 md:col-12 lg:col-12 xl:col-12">
-            <app-title-divider [title]="'Product Details'" [icon]="'pi pi-user'"></app-title-divider>
+        <!-- product details -->
+        <ng-container *ngIf="productDetails.productDetails">
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12">
+                <app-title-divider [title]="'Product Details'" [icon]="'pi pi-user'"></app-title-divider>
 
-        </div>
-        <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-1 flex justify-content-center align-items-center">
-
-            <div class="product-details-container">
-                <ul>
-                    <li>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book.
-                    </li>
-                    <li>
-                        It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged.
-                    </li>
-                    <li>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a type specimen book.
-                    </li>
-                    <li>
-                        It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged.
-                    </li>
-                </ul>
             </div>
-        </div>
+            <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-1 flex justify-content-center align-items-center">
+
+                <div class="product-details-container">
+                    <ul>
+                        <li *ngFor="let list of productDetails.productDetails">
+                            {{list}}
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </ng-container>
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
             <app-title-divider [title]="'Reviews'" [icon]="'pi pi-user'"></app-title-divider>
         </div>
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
-            <app-reviews></app-reviews>
+            <app-reviews [data]="productDetails.reviews"></app-reviews>
         </div>
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
@@ -102,7 +94,8 @@
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
             <div class="flex-container">
-                <div class="fixed-width-div p-2" *ngFor="let product of suggestedProducts">
+                <div class="fixed-width-div p-2" *ngFor="let product of suggestedProducts"
+                    (click)="navigateToProductDetails(product)">
                     <app-proudct-card [product]="product"></app-proudct-card>
                 </div>
             </div>
@@ -112,7 +105,7 @@
 
     <div class="footer-cart" *ngIf="showFooterCart">
         <div class="grid">
-            <div class="col-12 md:col-5 lg:col-4 xl:col-4 p-3 flex justify-content-center align-items-center">
+            <div class="col-12 md:col-5 lg:col-4 xl:col-4 p-3 mt-3 flex justify-content-center align-items-center">
                 <div class="grid">
                     <div class="col-3 md:col-3 lg:col-3 xl:col-3">
                         <div class="product-img">
@@ -125,7 +118,8 @@
                                 Product Name
                             </div>
                             <div class="col-12 flex">
-                                <div class="original-price font-bold p-1" style="text-decoration: line-through;" *ngIf="productDetails.discount">
+                                <div class="original-price font-bold p-1" style="text-decoration: line-through;"
+                                    *ngIf="productDetails.discount">
                                     Rs: {{commonService.originalPrice(selectedSize.price, productDetails.discount)}}
                                 </div>
                                 <div class="actual-price font-bold p-1" style="color: var(--primary-color)">
@@ -138,10 +132,11 @@
             </div>
 
             <div class="col-12 md:col-4 lg:col-4 xl:col-4 p-3 flex justify-content-center align-items-center">
-                    <div class="flex flex-column gap-2">
-                        <label>Available Sizes</label>
-                        <p-dropdown [options]="productDetails.prices" [(ngModel)]="selectedSize" optionLabel="size"></p-dropdown>
-                    </div>
+                <div class="flex flex-column gap-2">
+                    <label>Available Sizes</label>
+                    <p-dropdown [options]="productDetails.prices" [(ngModel)]="selectedSize"
+                        optionLabel="size"></p-dropdown>
+                </div>
             </div>
 
 

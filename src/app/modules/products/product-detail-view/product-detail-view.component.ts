@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
 import { Prices, Product } from 'src/app/shared/Interfaces/product.interface';
@@ -19,28 +19,7 @@ export class ProductDetailViewComponent {
   subscriptions: Subscription[] = [];
   productDetails!: Product;
   selectedSize!: Prices;
-
-  images: any[] = [{
-    itemImageSrc: 'assets/images/category_1.jpg',
-    thumbnailImageSrc: 'assets/images/category_1.jpg',
-    alt: 'Description for Image 1',
-    title: 'Title 1'
-  },
-  {
-    itemImageSrc: 'assets/images/category_2.jpg',
-    thumbnailImageSrc: 'assets/images/category_2.jpg',
-    alt: 'Description for Image 1',
-    title: 'Title 1'
-  },
-  {
-    itemImageSrc: 'assets/images/category_3.jpg',
-    thumbnailImageSrc: 'assets/images/category_3.jpg',
-    alt: 'Description for Image 1',
-    title: 'Title 1'
-  }];
-
   position: string = 'bottom';
-
 
   positionOptions = [
     {
@@ -92,7 +71,7 @@ export class ProductDetailViewComponent {
     }
   }
 
-  constructor(public commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService) {
+  constructor(public commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router) {
     // Subscribe to the route parameter changes
     const routeSubscription = this.activatedRoute.params.subscribe(params => {
       this.productId = params['productId'];
@@ -130,7 +109,51 @@ export class ProductDetailViewComponent {
       {
         size: '2x8',
         price: 300.00
-      }]
+      }],
+      productDetails: [`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+      the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+      of type and scrambled it to make a type specimen book.`, ` It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`, `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+      the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+      of type and scrambled it to make a type specimen book.`, ` It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`],
+      reviews: [{
+        fullName: 'Parthi Ram', _id: '1', comments: `It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`, rating: 4
+      },
+      {
+        fullName: 'Parthi Ram', _id: '1', comments: `It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`, rating: 4
+      },
+      {
+        fullName: 'Parthi Ram', _id: '1', comments: `It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`, rating: 4
+      },
+      {
+        fullName: 'Parthi Ram', _id: '1', comments: `It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`, rating: 4
+      },
+      {
+        fullName: 'Parthi Ram', _id: '1', comments: `It has survived not only five centuries, but also the leap into electronic typesetting,
+      remaining essentially unchanged.`, rating: 4
+      }],
+      images: [{ imageUrl: 'assets/images/category_2.jpg' }, { imageUrl: 'assets/images/category_1.jpg' }, { imageUrl: 'assets/images/category_3.jpg' }],
+      formFields: [
+        {
+          label: 'Name',
+          control: 'name',
+          type: 'text input',
+          isRequired: true,
+          placeholder: 'Name'
+        },
+        {
+          label: 'Upload Photo',
+          control: 'fileUpload',
+          type: 'file upload',
+          isRequired: false,
+          placeholder: 'Upload File'
+        }
+      ]
     }
 
     const getProductApi = this.productService.getProductById(this.productId).subscribe({
@@ -314,5 +337,19 @@ export class ProductDetailViewComponent {
         price: 200.00
       }]
     }]
+  }
+
+  navigateToProductDetails(product: Product) {
+    this.router.navigate(['/products/detail-view', product._id])
+  }
+
+  addToCart(formData: any) {
+    const cartData = [];
+    cartData.push(formData);
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }
+
+  receiveFormData(ev: any) {
+    this.addToCart(ev);
   }
 }
