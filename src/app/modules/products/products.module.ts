@@ -11,6 +11,7 @@ import { DynamicFormBuilderComponent } from 'src/app/components/standalone/dynam
 import { TitleDividerComponent } from 'src/app/components/standalone/title-divider/title-divider.component';
 import { CarouselSliderComponent } from 'src/app/components/standalone/carousel-slider/carousel-slider.component';
 import { ReviewsComponent } from 'src/app/components/standalone/reviews/reviews.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ReviewsComponent } from 'src/app/components/standalone/reviews/reviews.
     TitleDividerComponent,
     CarouselSliderComponent,
     ReviewsComponent
-  ]
+  ],
+  providers: [DialogService]
 })
 export class ProductsModule { }

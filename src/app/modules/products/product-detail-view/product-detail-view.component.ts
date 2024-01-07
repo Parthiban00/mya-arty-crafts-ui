@@ -5,6 +5,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { Prices, Product } from 'src/app/shared/Interfaces/product.interface';
 import { ProductService } from '../product.service';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogComponent, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-product-detail-view',
@@ -21,6 +22,7 @@ export class ProductDetailViewComponent {
   productDetails!: Product;
   selectedSize!: Prices;
   position: string = 'bottom';
+  ref!: DynamicDialogRef;
 
   positionOptions = [
     {
@@ -72,7 +74,7 @@ export class ProductDetailViewComponent {
     }
   }
 
-  constructor(public commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) {
+  constructor(public dialogService: DialogService, public commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) {
     // Subscribe to the route parameter changes
     const routeSubscription = this.activatedRoute.params.subscribe(params => {
       this.productId = params['productId'];
@@ -168,6 +170,32 @@ export class ProductDetailViewComponent {
       },
       error: err => {
         this.commonService.showError('Product', 'Error fetching data!');
+      },
+      complete() {
+
+      },
+    })
+
+    this.subscriptions.push(getProductApi);
+  }
+
+  submitReview(review:string){
+    const reqData ={
+      userId:this.commonService.userId,
+      comments: review
+
+    }
+
+    const getProductApi = this.productService.addReview(reqData).subscribe({
+      next: resData => {
+        if (resData.status) {
+          this.suggestedProducts = resData.data;
+        } else {
+          this.commonService.showError('Review', 'Error adding data!');
+        }
+      },
+      error: err => {
+        this.commonService.showError('Review', 'Error adding data!');
       },
       complete() {
 

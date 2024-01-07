@@ -13,6 +13,10 @@ export class ProductService {
     return this.webservice.post('products/getAll', data);
   }
 
+  addReview(data: any): Observable<any> {
+    return this.webservice.post('review/add', data);
+  }
+
   getProductById(id: string): Observable<any> {
     return this.webservice.get(`/products/getProductById/${id}`);
   }

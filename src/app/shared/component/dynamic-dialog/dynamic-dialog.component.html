@@ -28,4 +28,24 @@
         </div>
         </div>
     </div>
+
+    <div class="card" *ngSwitchCase="'add-review'">
+
+        <div class="grid flex justify-content-center">
+            <div class="col-12 md:col-6 lg:col-4 xl:col-4">
+                <div class="flex flex-column gap-2">
+                    <label>Comments</label>
+                    <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="review"
+                        placeholder="Enter full address"></textarea>
+                </div>
+            </div>
+
+        </div>
+  
+        <div class="grid flex justify-content-center mt-3">
+            <div class="col-12 md:col-6 lg:col-4 xl:col-4">
+            <p-button class="w-full" type="submit" (click)="submit()" label="Submit"></p-button>
+        </div>
+        </div>
+    </div>
 </ng-container>

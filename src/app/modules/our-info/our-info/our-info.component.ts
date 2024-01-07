@@ -15,5 +15,7 @@ constructor(private ActivateRoute: ActivatedRoute){
     const id = params['id'];
    this.currentInfo = id;
   });
+
+  
 }
 }

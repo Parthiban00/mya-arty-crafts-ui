@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { WebService } from 'src/app/services/web.service';
 import { ProductService } from '../product.service';
@@ -38,7 +38,7 @@ export class ProductsListComponent {
     { name: 'Rating above 4', key: 'r-above-4' }
   ];
 
-  constructor(private commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService) {
+  constructor(private commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService, private router:Router) {
 
     // Subscribe to the route parameter changes
     const routeSubscription = this.activatedRoute.params.subscribe(params => {
@@ -251,5 +251,10 @@ export class ProductsListComponent {
   onDropdownChange(ev: any) {
     this.categoryId = ev._id;
     this.getData();
+  }
+
+  
+  navigateToProductDetails(product: Product) {
+    this.router.navigate(['/products/detail-view', product._id])
   }
 }

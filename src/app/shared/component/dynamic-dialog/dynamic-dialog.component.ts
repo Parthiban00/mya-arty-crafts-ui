@@ -14,6 +14,7 @@ export class DynamicDialogComponent {
   items: any = [{}]
   dialogFor: string = '';
   address: string = '';
+  review: string = '';
   subscriptions: Subscription[] = [];
 
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private myAccountService: MyAccountService, private commonService: CommonService) { }
@@ -29,7 +30,7 @@ export class DynamicDialogComponent {
   submit() {
     const submitData = {
       dialogFor: this.dialogFor,
-      data: { address: this.address }
+      data: this.dialogFor === 'add-review' ? { review: this.review } : { address: this.address }
     }
 
     this.ref.close(submitData);
