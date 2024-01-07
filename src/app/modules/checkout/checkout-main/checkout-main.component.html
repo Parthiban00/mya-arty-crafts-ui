@@ -1,192 +1,162 @@
 <div class="checkout-container p-3">
-    <div class="header w-full flex justify-content-center align-items-center font-bold mb-4 text-2xl h-5rem"
-        style="background: var(--secondary-color); color: white;">
-        CHECKOUT
-    </div>
-    <div class="card p-3 border-round-md mb-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <!-- <div class="grid">
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold">Total Items</div>
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold">Total Payable Amount</div>
-        </div>
-        <div class="grid">
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold" style="color: var(--primary-color);">
-                {{checkOutData.items.length}}</div>
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold" style="color: var(--primary-color);">
-                {{checkOutData.payableAmount}}</div>
-        </div> -->
-        
-        <div class="text-center font-bold text-2xl" style="color: var(--primary-color);">Order Summary</div>
-        <div class="grid mt-2">
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 p-3">
-                <div class="grid">
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
-                        Total Items (Nos)
-                    </div>
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
-                        Total Price (₹)
-                    </div>
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
-                        Shipping Charge (₹)
-                    </div>
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
-                        Payable Amount (₹)
-                    </div>
-                </div>
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-7 xl:col-8 p-3">
+            <div class="card bg-white">
+                <div class="header w-full flex justify-content-center align-items-center font-bold mb-4 text-2xl h-5rem"
+                style="background: var(--secondary-color); color: white;">
+                CHECKOUT
             </div>
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 p-3">
-                <div class="grid">
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
-                        1
-                    </div>
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
-                        200
-                    </div>
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
-                        0.00
-                    </div>
-                    <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
-                        200.00
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- <div class="card p-3 border-round-md mb-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-            <div class="title font-bold text-left mb-3">
-                Choose Payment Option
-            </div>
-            <div class="flex flex-wrap gap-3">
-                <div class="flex align-items-center">
-                    <p-radioButton name="paymentOption" value="cod" [(ngModel)]="selectedPayOption" inputId="cod"></p-radioButton>
-                    <label for="cod" class="ml-2">COD (Cash On Delivery)</label>
-                </div>
-                
-                <div class="flex align-items-center">
-                    <p-radioButton name="paymentOption" value="pg" [(ngModel)]="selectedPayOption" inputId="pg"></p-radioButton>
-                    <label for="pg" class="ml-2">Payment Gateway (Razorpay)</label>
-                </div>
-            </div>
-        </div> -->
-    <!-- 
-        <div class="card p-3 border-round-md mb-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-            <div class="title font-bold text-left mb-3">
-                Shipping Address
-            </div>
+    
             <div class="card">
-                <div class="flex-container">
-                    <div class="fixed-width-div p-2" *ngFor="let list of addresses">
-                       <div class="address-box-container p-2" [ngClass]="{'address-selected':list.default}">
-                        <div class="grid">
-                            <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                               {{list.fullAddress}}
+                <p-toast></p-toast>
+                <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex"
+                    (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
+                <div class="card" style="min-height: 260px;">
+        
+                    <ng-container *ngIf="stepLabel === 'Info'">
+                        <div class="card p-3 border-round-md mt-5" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                            <div class="grid">
+                                <div class="col-4">
+                                    Name
+                                </div>
+                                <div class="col-6 text-left font-bold" style="color: var(--primary-color);">
+                                    {{userData.fullName}}
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="col-4">
+                                    Mobile No.
+                                </div>
+                                <div class="col-6 text-left font-bold" style="color: var(--primary-color);">
+                                    {{userData.mobileNo}}
+                                </div>
                             </div>
                         </div>
-                       </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-    <div class="card">
-        <p-toast></p-toast>
-        <p-steps [model]="items" [readonly]="false" [activeIndex]="activeIndex"
-            (activeIndexChange)="onActiveIndexChange($event)"></p-steps>
-        <div class="card" style="min-height: 260px;">
-
-            <ng-container *ngIf="stepLabel === 'Info'">
-                <div class="card p-3 border-round-md mt-5" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                    <div class="grid">
-                        <div class="col-4">
-                            Name
+        
+        
+        
+                    </ng-container>
+        
+                    <ng-container *ngIf="stepLabel === 'Register'">
+                        <div class="card mt-5">
+                            <app-sign-in *ngIf="userFor == 'signin'" [inputData]="{from:'checkout'}"
+                                (emitData)="signInData($event)"></app-sign-in>
+                            <app-sign-up *ngIf="userFor == 'signup'" [inputData]="{from:'checkout'}"
+                                (emitData)="signUpData($event)"></app-sign-up>
+                            <app-otp *ngIf="userFor == 'otp'" [inputData]="{from:'checkout'}"
+                                (emitData)="otpData($event)"></app-otp>
+        
                         </div>
-                        <div class="col-6 text-left font-bold" style="color: var(--primary-color);">
-                            {{userData.fullName}}
+                    </ng-container>
+        
+                    <ng-container *ngIf="stepLabel === 'Payment'">
+                        <div class="card p-3 border-round-md mt-5" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                            <!-- <div class="title font-bold text-left mb-3">
+                                Choose Payment Option
+                            </div> -->
+                            <div class="flex flex-wrap gap-3">
+                                <div class="flex align-items-center">
+                                    <p-radioButton name="paymentOption" value="cod" [(ngModel)]="selectedPayOption"
+                                        inputId="cod"></p-radioButton>
+                                    <label for="cod" class="ml-2">COD (Cash On Delivery)</label>
+                                </div>
+        
+                                <div class="flex align-items-center">
+                                    <p-radioButton name="paymentOption" value="pg" [(ngModel)]="selectedPayOption"
+                                        inputId="pg"></p-radioButton>
+                                    <label for="pg" class="ml-2">Payment Gateway (Razorpay)</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid">
-                        <div class="col-4">
-                            Mobile No.
-                        </div>
-                        <div class="col-6 text-left font-bold" style="color: var(--primary-color);">
-                            {{userData.mobileNo}}
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </ng-container>
-
-            <ng-container *ngIf="stepLabel === 'Register'">
-                <div class="card mt-5">
-                    <app-sign-in *ngIf="userFor == 'signin'" [inputData]="{from:'checkout'}"
-                        (emitData)="signInData($event)"></app-sign-in>
-                    <app-sign-up *ngIf="userFor == 'signup'" [inputData]="{from:'checkout'}"
-                        (emitData)="signUpData($event)"></app-sign-up>
-                    <app-otp *ngIf="userFor == 'otp'" [inputData]="{from:'checkout'}"
-                        (emitData)="otpData($event)"></app-otp>
-
-                </div>
-            </ng-container>
-
-            <ng-container *ngIf="stepLabel === 'Payment'">
-                <div class="card p-3 border-round-md mt-5" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                    <!-- <div class="title font-bold text-left mb-3">
-                        Choose Payment Option
-                    </div> -->
-                    <div class="flex flex-wrap gap-3">
-                        <div class="flex align-items-center">
-                            <p-radioButton name="paymentOption" value="cod" [(ngModel)]="selectedPayOption"
-                                inputId="cod"></p-radioButton>
-                            <label for="cod" class="ml-2">COD (Cash On Delivery)</label>
-                        </div>
-
-                        <div class="flex align-items-center">
-                            <p-radioButton name="paymentOption" value="pg" [(ngModel)]="selectedPayOption"
-                                inputId="pg"></p-radioButton>
-                            <label for="pg" class="ml-2">Payment Gateway (Razorpay)</label>
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-            <ng-container *ngIf="stepLabel === 'Address'">
-                <div class="card p-3 border-round-md mt-5" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                    <!-- <div class="title font-bold text-left mb-3">
-                        Shipping Address
-                    </div> -->
-                    <div class="card">
-                        <div class="flex-container">
-                            <div class="fixed-width-div p-2" *ngFor="let list of addresses">
-                                <div class="address-box-container p-2" [ngClass]="{'address-selected':list.default}">
-                                    <div class="grid">
-                                        <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                                            {{list.fullAddress}}
+                    </ng-container>
+                    <ng-container *ngIf="stepLabel === 'Address'">
+                        <div class="card p-3 border-round-md mt-5" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                            <!-- <div class="title font-bold text-left mb-3">
+                                Shipping Address
+                            </div> -->
+                            <div class="card">
+                                <div class="flex-container">
+                                    <div class="fixed-width-div p-2" *ngFor="let list of addresses">
+                                        <div class="address-box-container p-2" [ngClass]="{'address-selected':list.default}">
+                                            <div class="grid">
+                                                <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
+                                                    {{list.fullAddress}}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </ng-container>
+                    <ng-container *ngIf="stepLabel === 'Confirmation'">
+                        <div class="card p-3 mt-5">
+                            <p-button class="w-full" type="submit" label="Confirm To Place Order"
+                                (click)="placeOrder()"></p-button>
+                        </div>
+                    </ng-container>
+        
+                    <div class="card stepper-bottom-btn flex justify-content-end">
+                        <p-button class="mr-1" type="submit" label="Previous"
+                        (click)="prevStep()" *ngIf="activeIndex !== 0" styleClass="p-button-secondary"></p-button>
+        
+                        <p-button class="mr-1" type="submit" label="Next"
+                               (click)="nextStep()" *ngIf="activeIndex !== items.length-1"></p-button>
                     </div>
                 </div>
-            </ng-container>
-            <ng-container *ngIf="stepLabel === 'Confirmation'">
-                <div class="card p-3 mt-5">
-                    <p-button class="w-full" type="submit" label="Confirm To Place Order"
-                        (click)="placeOrder()"></p-button>
+            </div>
+
+            </div>
+
+
+        
+        </div>
+        <div class="col-12 md:col-6 lg:col-5 xl:col-4 p-3">
+            <div class="card bg-white">
+
+                <div class="header w-full flex justify-content-center align-items-center font-bold mb-4 text-2xl h-5rem"
+                style="background: var(--secondary-color); color: white;">
+                ORDER SUMMARY
+            </div>
+                <div class="card p-3 border-round-md mb-3">
+                    <div class="grid mt-2">
+                        <div class="col-6 md:col-6 lg:col-6 xl:col-6 p-3">
+                            <div class="grid">
+                                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
+                                    Total Items (Nos)
+                                </div>
+                                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
+                                    Total Price (₹)
+                                </div>
+                                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
+                                    Shipping Charge (₹)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-6 lg:col-6 xl:col-6 p-3">
+                            <div class="grid">
+                                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
+                                    1
+                                </div>
+                                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
+                                    200
+                                </div>
+                                <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-right">
+                                    0.00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex highlight font-bold p-3 w-full justify-content-between">
+                            <div class="label">
+                                Payable Amount (₹) 
+                            </div>
+                            <div class="amount">
+                                100.00
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </ng-container>
-
-            <div class="card stepper-bottom-btn flex justify-content-end">
-                <p-button class="mr-1" type="submit" label="Previous"
-                (click)="prevStep()" *ngIf="activeIndex !== 0" styleClass="p-button-secondary"></p-button>
-
-                <p-button class="mr-1" type="submit" label="Next"
-                       (click)="nextStep()" *ngIf="activeIndex !== items.length-1"></p-button>
             </div>
         </div>
     </div>
-
-
 </div>

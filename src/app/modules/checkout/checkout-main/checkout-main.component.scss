@@ -1,7 +1,7 @@
 .checkout-container{
-    width: 750px;
+    width: 100%;
     height: auto;
-    background: white;
+    // background: white;
     margin: 40px auto;
 }
 
@@ -23,4 +23,9 @@
 
 .address-selected {
   border: 5px solid #00bb00 !important;
+}
+
+.highlight{
+  background: #f55d5d;
+  color: white;
 }
