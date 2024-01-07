@@ -1,5 +1,5 @@
     <ng-container [ngSwitch]="currentInfo" >
-        <div class="main-div">
+        <div class="main-div mb-5">
             <ng-container *ngSwitchCase="'terms&conditions'">
                 <h1 class="flex justify-content-center">Termes & Conditions</h1>
                 <h4>OVERVIEW</h4>
@@ -41,20 +41,28 @@
                   <p class="text-sm">This website is operated by photowalaa. Throughout the site, the terms “we”, “us” and “our” refer to photowalaa. photowalaa offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
                   <p class="text-sm">This website is operated by photowalaa. Throughout the site, the terms “we”, “us” and “our” refer to photowalaa. photowalaa offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
                 </ng-container>
-        </div>
-        <div class="m-4">
-          <ng-container *ngSwitchCase="'address'">
-            <h1>Address</h1>
-            <p class="text-sm">Additional information for active users</p>
-          </ng-container>
-          
-          <ng-container *ngSwitchCase="'contact-us'">
-            <h1>Contact Us</h1>
-            <p class="text-sm"><b>Contact Number: </b>7092969473</p>
-            <p class="text-sm"><b>Mail: </b>prithivik2702@gmail.com</p>
-            <p class="text-sm"><b>Support Time: </b>10 am to 7 pm</p>
-            <p class="text-sm"><b>Whatsapp: </b>7092969473</p>
-          </ng-container>
+
+                <ng-container *ngSwitchCase="'about-us'">
+                  <h1 class="flex justify-content-center">About Us</h1>
+                  <h4>OVERVIEW</h4>
+                  <p class="text-sm">This website is operated by photowalaa. Throughout the site, the terms “we”, “us” and “our” refer to photowalaa. photowalaa offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
+                  <p class="text-sm">This website is operated by photowalaa. Throughout the site, the terms “we”, “us” and “our” refer to photowalaa. photowalaa offers this website, including all information, tools and services available from this site to you, the user, conditioned upon your acceptance of all terms, conditions, policies and notices stated here.</p>
+                </ng-container>
+                <ng-container *ngSwitchCase="'address'">
+                  <h1>Phone</h1>
+                  <p class="text-sm">Additional information for active users</p>
+                  <h1>Whats app</h1>
+                  <p class="text-sm">Additional information for active users</p>
+                  <h1>Address</h1>
+                  <p class="text-sm">Additional information for active users</p>
+                </ng-container>
+                <ng-container *ngSwitchCase="'contact-us'">
+                                    <h1 class="flex justify-content-center">Contact Us</h1>
+                  <p class="text-sm"><b>Contact Number: </b>7092969473</p>
+                  <p class="text-sm"><b>Mail: </b>prithivik2702@gmail.com</p>
+                  <p class="text-sm"><b>Support Time: </b>10 am to 7 pm</p>
+                  <p class="text-sm"><b>Whatsapp: </b>7092969473</p>
+                </ng-container>
         </div>
     
       </ng-container>
