@@ -15,7 +15,7 @@ import { httpInterceptorProviders } from './helpers/http.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { MessageService } from 'primeng/api';
     SharedModule,
     CommonModule
   ],
-  providers: [httpInterceptorProviders, MessageService],
+  providers: [httpInterceptorProviders, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

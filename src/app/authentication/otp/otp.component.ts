@@ -38,14 +38,25 @@ export class OTPComponent {
   }
 
   signIn() {
+    const defaultUerInfo ={
+      _id: '1',
+      fullName: 'ParthiRam',
+      email: 'parthi@gmail.com',
+      mobileNo: '9076767878',
+    }
+
+    localStorage.setItem('userData',JSON.stringify(defaultUerInfo));
     this.router.navigate(['']);
+
     // if (this.signInForm.valid) {
 
     //   const data = this.signInForm.getRawValue();
     //   this.authenticationService.login(data).subscribe({
     //     next: resdata => {
     //       if (resdata.status) {
-    //         this.storageService.saveUser(resdata.data);
+            // // this.storageService.saveUser(resdata.data);
+            // localStorage.setItem('userData',JSON.stringify(resdata.data));
+            // this.router.navigate(['/home']);
     //       }
     //     },
     //     error: err => {

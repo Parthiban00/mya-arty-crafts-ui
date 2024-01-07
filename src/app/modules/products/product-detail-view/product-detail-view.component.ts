@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CommonService } from 'src/app/services/common.service';
 import { Prices, Product } from 'src/app/shared/Interfaces/product.interface';
 import { ProductService } from '../product.service';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-product-detail-view',
@@ -71,7 +72,7 @@ export class ProductDetailViewComponent {
     }
   }
 
-  constructor(public commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router) {
+  constructor(public commonService: CommonService, private activatedRoute: ActivatedRoute, private productService: ProductService, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) {
     // Subscribe to the route parameter changes
     const routeSubscription = this.activatedRoute.params.subscribe(params => {
       this.productId = params['productId'];
@@ -344,12 +345,71 @@ export class ProductDetailViewComponent {
   }
 
   addToCart(formData: any) {
-    const cartData = [];
-    cartData.push(formData);
-    localStorage.setItem('cartData', JSON.stringify(cartData));
+    const cart: Product[] | any = this.commonService.cartData;
+
+    const existingCart = JSON.parse(cart);
+
+    const newCartData = [];
+
+    let productToCart: Product = JSON.parse(JSON.stringify(this.productDetails));
+    productToCart.quantity = 1;
+    productToCart.formData = formData;
+    productToCart.price = this.selectedSize;
+    newCartData.push(productToCart);
+
+    if (existingCart.length) {
+      const productIndex = existingCart.findIndex((item: Product) => item._id === this.productDetails._id);
+
+      if (productIndex !== -1) {
+        existingCart.splice(productIndex, 1)
+      }
+    }
+
+    existingCart.push(newCartData[0]);
+
+    localStorage.removeItem('cartData');
+    localStorage.setItem('cartData', JSON.stringify(existingCart));
+
+    this.commonService.showSuccess('Cart', 'Product added to cart successfully...');
+    this.router.navigate(['/home']);
+  }
+
+  checkExistingCart(formData: any) {
+    const cart: Product[] | any = this.commonService.cartData;
+
+    const existingCart = JSON.parse(cart);
+
+    if (existingCart.length) {
+      const isProductExists = existingCart.find((item: Product) => item._id === this.productDetails._id);
+
+      if (isProductExists) {
+        this.confirm(formData);
+      }
+    } else {
+      this.addToCart(formData);
+    }
   }
 
   receiveFormData(ev: any) {
-    this.addToCart(ev);
+    this.checkExistingCart(ev);
+  }
+
+  confirm(formData: any) {
+    this.confirmationService.confirm({
+      message: 'This product is already existing in your cart.',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.router.navigate(['/cart']);
+      },
+      reject: (type: any) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.addToCart(formData);
+            break;
+          case ConfirmEventType.CANCEL:
+            break;
+        }
+      }
+    });
   }
 }

@@ -8,8 +8,8 @@
             <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold">Total Payable Amount</div>
         </div>
         <div class="grid">
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold" style="color: var(--primary-color);">1</div>
-            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold" style="color: var(--primary-color);">200.00</div>
+            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold" style="color: var(--primary-color);">{{checkOutData.items.length}}</div>
+            <div class="col-6 md:col-6 lg:col-6 xl:col-6 font-bold" style="color: var(--primary-color);">{{checkOutData.payableAmount}}</div>
         </div>
     </div>
 
@@ -20,12 +20,12 @@
             </div>
             <div class="flex flex-wrap gap-3">
                 <div class="flex align-items-center">
-                    <p-radioButton name="paymentOption" value="cod" [(ngModel)]="ingredient" inputId="cod"></p-radioButton>
+                    <p-radioButton name="paymentOption" value="cod" [(ngModel)]="selectedPayOption" inputId="cod"></p-radioButton>
                     <label for="cod" class="ml-2">COD (Cash On Delivery)</label>
                 </div>
                 
                 <div class="flex align-items-center">
-                    <p-radioButton name="paymentOption" value="pg" [(ngModel)]="ingredient" inputId="pg"></p-radioButton>
+                    <p-radioButton name="paymentOption" value="pg" [(ngModel)]="selectedPayOption" inputId="pg"></p-radioButton>
                     <label for="pg" class="ml-2">Payment Gateway (Razorpay)</label>
                 </div>
             </div>
@@ -37,58 +37,20 @@
             </div>
             <div class="card">
                 <div class="flex-container">
-                    <div class="fixed-width-div p-2">
-                       <div class="address-box-container p-2 address-selected">
+                    <div class="fixed-width-div p-2" *ngFor="let list of addresses">
+                       <div class="address-box-container p-2" [ngClass]="{'address-selected':list.default}">
                         <div class="grid">
                             <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                                1428, Thamarakki Main Road, Idayamelur, Sivaganga - pin - 630562.
+                               {{list.fullAddress}}
                             </div>
                         </div>
                        </div>
                     </div>
-                    <div class="fixed-width-div p-2">
-                        <div class="address-box-container p-2">
-                         <div class="grid">
-                             <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                                 1428, Thamarakki Main Road, Idayamelur, Sivaganga - pin - 630562.
-                             </div>
-                         </div>
-                        </div>
-                     </div>
-                     <div class="fixed-width-div p-2">
-                        <div class="address-box-container p-2">
-                         <div class="grid">
-                             <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                                 1428, Thamarakki Main Road, Idayamelur, Sivaganga - pin - 630562.
-                             </div>
-                         </div>
-                        </div>
-                     </div>
-                     <div class="fixed-width-div p-2">
-                        <div class="address-box-container p-2">
-                         <div class="grid">
-                             <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                                 1428, Thamarakki Main Road, Idayamelur, Sivaganga - pin - 630562.
-                             </div>
-                         </div>
-                        </div>
-                     </div>
-                     <div class="fixed-width-div p-2">
-                        <div class="address-box-container p-2">
-                         <div class="grid">
- 
-                             <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-3">
-                                 1428, Thamarakki Main Road, Idayamelur, Sivaganga - pin - 630562.
-                             </div>
-                         </div>
-                        </div>
-                     </div>
-            
                 </div>
             </div>
         </div>
 
         <div class="card p-3 mb-3">
-            <p-button class="w-full" type="submit" label="Confirm To Place Order"></p-button>
+            <p-button class="w-full" type="submit" label="Confirm To Place Order" (click)="placeOrder()"></p-button>
         </div>
 </div>

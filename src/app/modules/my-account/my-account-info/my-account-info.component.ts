@@ -6,6 +6,7 @@ import { DynamicDialogComponent } from 'src/app/shared/component/dynamic-dialog/
 import { MyAccountService } from '../my-account.service';
 import { Subscription } from 'rxjs';
 import { MyAccountInfo } from 'src/app/shared/Interfaces/my-account.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-account-info',
@@ -19,7 +20,7 @@ export class MyAccountInfoComponent {
   subscriptions: Subscription[] = [];
   myAccountInfo !: MyAccountInfo;
 
-  constructor(public dialogService: DialogService, public messageService: MessageService, private commonService: CommonService, private myAccountService: MyAccountService) { }
+  constructor(public dialogService: DialogService, public messageService: MessageService, private commonService: CommonService, private myAccountService: MyAccountService, private router: Router) { }
 
   show(title: string, data: any, dialogFor: string) {
 
@@ -251,6 +252,12 @@ export class MyAccountInfoComponent {
         subscription.unsubscribe();
       }
     });
+  }
+
+  signOut(){
+    this.commonService.showSuccess('Sign Out', 'Sign Out successfully...');
+    localStorage.removeItem('userData');
+    this.router.navigate(['/home']);
   }
 
 }

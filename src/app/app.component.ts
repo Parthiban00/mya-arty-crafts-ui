@@ -43,6 +43,111 @@ export class AppComponent {
     //   this.logout();
     // });
 
+    //to set the cartData as default - for testing
+    const cartData = [
+      {
+          "name": "Product Name",
+          "tag": true,
+          "tagContent": "Trending",
+          "discount": 20,
+          "rating": 4,
+          "originalPrice": 400,
+          "actualPrice": 300,
+          "imageUrl": "assets/images/category_1.jpg",
+          "_id": "1",
+          "quantity": 1,
+          "categoryId": "1",
+          "description": "  It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged.",
+          "prices": [
+              {
+                  "size": "2x4",
+                  "price": 200
+              },
+              {
+                  "size": "2x8",
+                  "price": 300
+              }
+          ],
+          "productDetails": [
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been\n      the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley\n      of type and scrambled it to make a type specimen book.",
+              " It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged.",
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been\n      the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley\n      of type and scrambled it to make a type specimen book.",
+              " It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged."
+          ],
+          "reviews": [
+              {
+                  "fullName": "Parthi Ram",
+                  "_id": "1",
+                  "comments": "It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged.",
+                  "rating": 4
+              },
+              {
+                  "fullName": "Parthi Ram",
+                  "_id": "1",
+                  "comments": "It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged.",
+                  "rating": 4
+              },
+              {
+                  "fullName": "Parthi Ram",
+                  "_id": "1",
+                  "comments": "It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged.",
+                  "rating": 4
+              },
+              {
+                  "fullName": "Parthi Ram",
+                  "_id": "1",
+                  "comments": "It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged.",
+                  "rating": 4
+              },
+              {
+                  "fullName": "Parthi Ram",
+                  "_id": "1",
+                  "comments": "It has survived not only five centuries, but also the leap into electronic typesetting,\n      remaining essentially unchanged.",
+                  "rating": 4
+              }
+          ],
+          "images": [
+              {
+                  "imageUrl": "assets/images/category_2.jpg"
+              },
+              {
+                  "imageUrl": "assets/images/category_1.jpg"
+              },
+              {
+                  "imageUrl": "assets/images/category_3.jpg"
+              }
+          ],
+          "formFields": [
+              {
+                  "label": "Name",
+                  "control": "name",
+                  "type": "text input",
+                  "isRequired": true,
+                  "placeholder": "Name"
+              },
+              {
+                  "label": "Upload Photo",
+                  "control": "fileUpload",
+                  "type": "file upload",
+                  "isRequired": false,
+                  "placeholder": "Upload File"
+              }
+          ],
+          "formData": {
+              "name": "asdf",
+              "fileUpload": "",
+              "fileUpload_base64": ""
+          },
+          "price": {
+              "size": "2x4",
+              "price": 200
+          }
+      }
+  ];
+
+    localStorage.removeItem('carData');
+    localStorage.setItem('cartData',JSON.stringify(cartData));
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         // Navigation start event

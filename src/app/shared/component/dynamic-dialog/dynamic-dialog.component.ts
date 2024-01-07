@@ -23,6 +23,7 @@ export class DynamicDialogComponent {
     const passedData = this.config.data;
     this.dialogFor = this.config.data.dialogFor;
     console.log('Passed Data:', passedData);
+    this.items = passedData.data[0].items;
   }
 
   submit() {

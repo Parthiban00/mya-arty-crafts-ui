@@ -6,7 +6,15 @@
       SHOPPING BAG
     </div>
 
-    <app-items-list [itemList]="items"></app-items-list>
+    <ng-container *ngIf="cartData">
+      <app-items-list [itemList]="cartData"></app-items-list>
+
+    </ng-container>
+    <ng-container *ngIf="!cartData">
+      <!-- no cart data found -->
+
+    </ng-container>
+
 
     <div class="total-price-cotainer">
       <div class="grid">
@@ -26,23 +34,23 @@
         <div class="col-6 md:col-3 lg:col-3 xl:col-3 p-3">
           <div class="grid">
             <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
-              200.00
+            {{totalPrice}}.00
             </div>
             <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
-              0.00
+              {{shippingCharge}}
             </div>
             <div class="col-12 md:col-12 lg:col-12 xl:col-12 font-bold p-3 text-left">
-              200.00
+              {{payableAmount}}
             </div>
           </div>
         </div>
       </div>
       <div class="grid">
         <div class="col-12 md:col-6 lg:col-6 xl:col-6 p-3">
-          <p-button class="w-full" type="submit" styleClass="p-button-secondary" label="Save For Later"></p-button>
+          <p-button class="w-full" type="submit" styleClass="p-button-secondary" label="Save For Later" (click)="saveToLater()"></p-button>
         </div>
         <div class="col-12 md:col-6 lg:col-6 xl:col-6 p-3">
-          <p-button class="w-full" type="submit" label="Proceed To Checkout" [routerLink]="['/checkout']"></p-button>
+          <p-button class="w-full" type="submit" label="Proceed To Checkout" (click)="proceedToCheckOut()"></p-button>
         </div>
       </div>
     </div>

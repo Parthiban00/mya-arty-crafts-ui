@@ -31,7 +31,7 @@ export class HeaderComponent {
       },
       {
         label: 'Shop',
-        icon: 'pi pi-list',
+        icon: 'pi pi-shopping-bag',
         routerLink: '/products'
       },
       {
@@ -41,7 +41,7 @@ export class HeaderComponent {
       },
       {
         label: 'Contact',
-        icon: 'pi pi-list',
+        icon: 'pi pi-phone',
         routerLink: '/contact'
       }
     ];

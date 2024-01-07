@@ -53,4 +53,12 @@ export class CommonService {
     // Calculate the average rating
     return sumOfRatings / reviews.length;
   }
+
+  get cartData() {
+    return localStorage.getItem('cartData') ? localStorage.getItem('cartData'): '[]';
+  }
+
+  get checkOutData() {
+    return localStorage.getItem('checkOutData') ? localStorage.getItem('checkOutData'): '[]';
+  }
 }

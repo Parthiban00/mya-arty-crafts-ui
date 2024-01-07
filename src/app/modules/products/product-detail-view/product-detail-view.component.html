@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="col-12 md:col-12 lg:col-12 p-1">
-                        <app-title-divider [title]="'Customizable'" [icon]="'pi pi-user'"></app-title-divider>
+                        <app-title-divider [title]="'Customizable'" [icon]="'pi pi-credit-card'"></app-title-divider>
                         <app-dynamic-form-builder [data]="productDetails.formFields" (formData)="receiveFormData($event)"></app-dynamic-form-builder>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
         <!-- product details -->
         <ng-container *ngIf="productDetails.productDetails">
             <div class="col-12 md:col-12 lg:col-12 xl:col-12">
-                <app-title-divider [title]="'Product Details'" [icon]="'pi pi-user'"></app-title-divider>
+                <app-title-divider [title]="'Product Details'" [icon]="'pi pi-list'"></app-title-divider>
 
             </div>
             <div class="col-12 md:col-12 lg:col-12 xl:col-12 p-1 flex justify-content-center align-items-center">
@@ -81,7 +81,7 @@
         </ng-container>
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
-            <app-title-divider [title]="'Reviews'" [icon]="'pi pi-user'"></app-title-divider>
+            <app-title-divider [title]="'Reviews'" [icon]="'pi pi-comments'"></app-title-divider>
         </div>
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
@@ -89,7 +89,7 @@
         </div>
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
-            <app-title-divider [title]="'Suggested Products'" [icon]="'pi pi-user'"></app-title-divider>
+            <app-title-divider [title]="'Suggested Products'" [icon]="'pi pi-list'"></app-title-divider>
         </div>
 
         <div class="col-12 md:col-12 lg:col-12 xl:col-12">
@@ -157,3 +157,13 @@
         </div>
     </div>
 </div>
+
+<p-confirmDialog #cd [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+        <h3>Confirm</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-check" label="Remove and Add this one" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-shopping-cart" label="Go To Cart" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>

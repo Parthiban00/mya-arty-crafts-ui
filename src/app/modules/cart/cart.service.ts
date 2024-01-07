@@ -17,4 +17,8 @@ export class CartService {
     return this.webservice.post(`users/getCoupon`, data);
   }
 
+  getShippingCharge(): Observable<any> {
+    return this.webservice.get(`shipping/getShippingCharge`);
+  }
+
 }

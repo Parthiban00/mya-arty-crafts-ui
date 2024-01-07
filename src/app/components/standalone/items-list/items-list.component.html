@@ -1,50 +1,26 @@
 <div class="item-list-container">
     <!-- Product #1 -->
-    <div class="item">
+    <div class="item" *ngFor="let list of itemList">
         <div class="buttons buttons flex justify-content-center align-items-center" *ngIf="from!=='order-status'">
           <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
         </div>
   
         <div class="image">
-          <img src="../../../../assets/images/category_1.jpg" alt="" />
+          <img [src]="list.imageUrl" alt="" />
         </div>
   
         <div class="description">
-          <span class="font-bold">Common Projects</span>
-          <span>Bball High</span>
-          <span>White</span>
+          <span class="font-bold">{{list.name}}</span>
+          <span>{{list.description}}</span>
+          <span>{{list.price?.size}}</span>
         </div>
   
         <div class="quantity flex justify-content-center align-items-center" *ngIf="from!=='order-status'">
-          <p-button icon="pi pi-minus" styleClass="p-button-secondary"></p-button>
+          <!-- <p-button icon="pi pi-minus" styleClass="p-button-secondary"></p-button>
           <input type="text" name="name" value="1">
-          <p-button icon="pi pi-plus" styleClass="p-button-secondary"></p-button>
+          <p-button icon="pi pi-plus" styleClass="p-button-secondary"></p-button> -->
         </div>
   
-        <div class="total-price font-bold">₹&nbsp;349</div>
-      </div>
-
-      <div class="item">
-        <div class="buttons buttons flex justify-content-center align-items-center" *ngIf="from!=='order-status'">
-          <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
-        </div>
-  
-        <div class="image">
-          <img src="../../../../assets/images/category_1.jpg" alt="" />
-        </div>
-  
-        <div class="description">
-          <span class="font-bold">Common Projects</span>
-          <span>Bball High</span>
-          <span>White</span>
-        </div>
-  
-        <div class="quantity flex justify-content-center align-items-center" *ngIf="from!=='order-status'">
-          <p-button icon="pi pi-minus" styleClass="p-button-secondary"></p-button>
-          <input type="text" name="name" value="1">
-          <p-button icon="pi pi-plus" styleClass="p-button-secondary"></p-button>
-        </div>
-  
-        <div class="total-price font-bold">₹&nbsp;349</div>
+        <div class="total-price font-bold">₹&nbsp;{{list.price?.price}}.00</div>
       </div>
 </div>

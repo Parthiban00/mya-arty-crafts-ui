@@ -46,7 +46,7 @@
         </div>
         <div class="grid mt-3">
             <div class="flex-container">
-                <div class="fixed-width-div p-2" (click)="show('Pending Orders', {}, 'orders-view')">
+                <div class="fixed-width-div p-2 cursor-pointer" (click)="show('Pending Orders', myAccountInfo.orders.pending , 'orders-view')" >
                     <div class="orders-box-container p-2">
                         <div class="title font-bold text-md">
                             Pending
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="fixed-width-div p-2">
+                <div class="fixed-width-div p-2 cursor-pointer" (click)="show('Pending Orders', myAccountInfo.orders.completed , 'orders-view')" >
                     <div class="orders-box-container p-2">
                         <div class="title font-bold text-md">
                             Completed
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="fixed-width-div p-2">
+                <div class="fixed-width-div p-2 cursor-pointer" (click)="show('Pending Orders', myAccountInfo.orders.cancelled , 'orders-view')" >
                     <div class="orders-box-container p-2">
                         <div class="title font-bold text-md">
                             Cancelled
@@ -134,7 +134,7 @@
     </div>
 
     <div class="card p-3 mb-3">
-        <p-button class="w-full" type="submit" [routerLink]="['/auth/sign-in']" styleClass="p-button-secondary"
+        <p-button class="w-full" type="submit" (click)="signOut()" styleClass="p-button-secondary"
             label="Sign Out"></p-button>
     </div>
 </div>
