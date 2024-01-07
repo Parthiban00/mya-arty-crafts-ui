@@ -23,6 +23,11 @@ import { NgOtpInputModule } from 'ng-otp-input';
     FormsModule,
     ReactiveFormsModule,
     NgOtpInputModule
+  ],
+  exports: [
+    SignInComponent,
+    OTPComponent,
+    SignUpComponent
   ]
 })
 export class AuthenticationModule { }

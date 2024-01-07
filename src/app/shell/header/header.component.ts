@@ -38,11 +38,6 @@ export class HeaderComponent {
         label: 'About Us',
         icon: 'pi pi-list',
         routerLink: '/our-info/about-us'
-      },
-      {
-        label: 'Contact',
-        icon: 'pi pi-phone',
-        routerLink: '/our-info/contact-us'
       }
     ];
 

@@ -40,6 +40,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { SliderModule } from 'primeng/slider';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { AccordionModule } from 'primeng/accordion';
+import { StepsModule } from 'primeng/steps';
 @NgModule({
   declarations: [],
   imports: [
@@ -82,7 +83,8 @@ import { AccordionModule } from 'primeng/accordion';
     PaginatorModule,
     SliderModule,
     DynamicDialogModule,
-    AccordionModule
+    AccordionModule,
+    StepsModule
   ],
   exports: [
     ToolbarModule,
@@ -123,7 +125,8 @@ import { AccordionModule } from 'primeng/accordion';
     PaginatorModule,
     SliderModule,
     DynamicDialogModule,
-    AccordionModule
+    AccordionModule,
+    StepsModule
   ],
   providers: [
     MessageService

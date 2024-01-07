@@ -7,6 +7,10 @@
   
         <div class="image">
           <img [src]="list.imageUrl" alt="" />
+          <div class="save-for-later">
+            <span> <button pButton  type="button"  label="Save For Later" class="p-button-text" (click)="saveLater(list)"></button></span>
+
+          </div>
         </div>
   
         <div class="description">

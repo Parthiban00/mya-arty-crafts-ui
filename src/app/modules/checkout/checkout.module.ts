@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { PrimeNgModule } from 'src/app/shared/prime-ng.module';
 import { CheckoutMainComponent } from './checkout-main/checkout-main.component';
+import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { CheckoutMainComponent } from './checkout-main/checkout-main.component';
   imports: [
     CommonModule,
     CheckoutRoutingModule,
-    PrimeNgModule
+    PrimeNgModule,
+    AuthenticationModule
   ]
 })
 export class CheckoutModule { }

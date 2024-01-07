@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { StorageService } from '../../services/storage.service';
@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 export class SignInComponent {
 
   @ViewChild('signUpFormRef') formFields!: ElementRef;
+
+  @Input('inputData') inputData: any;
+  @Output() emitData = new EventEmitter<any>();
 
   checked: boolean;
   checked1: string = 'hi';
@@ -28,22 +31,49 @@ export class SignInComponent {
   }
 
   ngOnInit() {
-
+    if (this.inputData) {
+      //from modal
+    }
   }
 
   get formAbstractControl(): { [key: string]: AbstractControl } {
     return this.signInForm.controls;
   }
 
+  goToSignUp(){
+    if(this.inputData){
+      this.emitData.emit({status:'new-user', next:'sign-up'});
+
+    } else {
+      this.router.navigate(['/auth/sign-up']);
+    }
+  }
+
+
   signIn() {
-    // if (this.signInForm.valid) {
+    if(this.inputData){
+      this.emitData.emit({status:'logged-in', next:'send-otp'});
+
+    } else {
+      //need to send otp
       this.router.navigate(['/auth/OTP']);
+
+    }
+    
+
+
+    // if (this.signInForm.valid) {
 
     //   const data = this.signInForm.getRawValue();
     //   this.authenticationService.login(data).subscribe({
     //     next: resdata => {
     //       if (resdata.status) {
-    //         this.storageService.saveUser(resdata.data);
+    //         // this.storageService.saveUser(resdata.data);
+    //         if (this.inputData) {
+    //           this.emitData.emit({status:'logged-in', next:'send-otp'});
+    //         } else {
+    //           this.router.navigate(['/auth/OTP']);
+    //         }
     //       }
     //     },
     //     error: err => {

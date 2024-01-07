@@ -1,44 +1,24 @@
-<div class="h-screen flex justify-content-center align-items-center">
+<div class="flex justify-content-center align-items-center" [ngClass]="{'h-screen ':!inputData}">
     <div class="h-30rem w-27rem relative bg-white border-round-md" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <div class="profile-circle h-10rem w-10rem surface-400 -my-8 mx-auto border-circle bg-contain">
+        <div class="profile-circle h-10rem w-10rem surface-400 -my-8 mx-auto border-circle bg-contain" *ngIf="!inputData">
         </div>
         <form [formGroup]="signInForm" (ngSubmit)="signIn()" autocomplete="off" #signInFormRef>
             <div class="card text-center h-full p-4 mt-8">
-                <div class="text-indigo-400">
+                <div class="text-indigo-400" *ngIf="!inputData || inputData.from !=='checkout'">
                     <h3>Sign In</h3>
                 </div>
                 <div class="card mt-5">
-                    <!-- <div class="field">
-                        <span class="p-input-icon-left">
-                            <i class="pi pi-user"></i>
-                            <input type="text" formControlName="email" name="email" class="p-inputtext-sm w-17rem" pInputText placeholder="Email" />
-                        </span>
-                    </div> -->
                     <div class="field">
                         <span class="p-input-icon-left">
                             <i class="pi pi-lock"></i>
                             <input type="text" formControlName="password" name="mobileNo" class="p-inputtext-sm w-17rem" pInputText placeholder="Mobile No." />
                         </span>
                     </div>
-                    <!-- <div class="field">
-                        <span class="p-input-icon-left">
-                            <i class="pi pi-lock"></i>
-                            <input type="password" formControlName="password" name="password" class="p-inputtext-sm w-17rem" pInputText placeholder="Password" />
-                        </span>
-                    </div> -->
-
-                    <!-- <div class="grid">
-                        <div class="col-6 p-field-checkbox text-left text-sm cursor-pointer inline-flex">
-                            <p-checkbox [binary]=true inputId="binary"></p-checkbox>
-                            <label for="binary" class="ml-1">Remember Me</label>
-                        </div>
-                        <div class="col-6 text-right text-sm text-primary cursor-pointer" [routerLink]="['/auth/forget-password']">Forget Password?</div>
-                    </div> -->
                     <div class="py-4 px-0 flex justify-content-center align-items-center">
                         <p-button class="w-15rem" label="Proceed To Send OTP" (click)="signIn()" styleClass="p-button-sm"></p-button>
                     </div>
                     <div class="py-4 px-0 flex justify-content-center align-items-center">
-                        <button pButton  type="button" [routerLink]="['/auth/sign-up']"  label="New Visitor ?" icon="pi pi-user-plus" iconPos="right" class="p-button-text w-10rem"></button>
+                        <button pButton  type="button" (click)="goToSignUp()"  label="New Visitor ?" icon="pi pi-user-plus" iconPos="right" class="p-button-text w-10rem"></button>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,8 @@ import { TitleDividerComponent } from '../components/standalone/title-divider/ti
 import { DynamicDialogComponent } from './component/dynamic-dialog/dynamic-dialog.component';
 import { PrimeNgModule } from './prime-ng.module';
 import { ItemsListComponent } from '../components/standalone/items-list/items-list.component';
+import { SignInComponent } from '../authentication/sign-in/sign-in.component';
+import { AuthenticationModule } from '../authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { ItemsListComponent } from '../components/standalone/items-list/items-li
     CommonModule,
     TitleDividerComponent,
     PrimeNgModule,
-    ItemsListComponent
+    ItemsListComponent,
+    AuthenticationModule
   ],
   exports: [
     HttpLoaderComponent,

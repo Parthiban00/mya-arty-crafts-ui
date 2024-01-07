@@ -16,6 +16,26 @@ export class CheckoutMainComponent {
   selectedPayOption: string = 'cod';
   addresses!: Address[];
   subscriptions: Subscription[] = [];
+  stepLabel: string = '';
+  userFor = 'signup';
+
+  get userData() {
+    return JSON.parse(this.commonService.userDetails || '[]');
+  }
+
+  activeIndex: number = 0;
+
+  items: any[] = [];
+
+  nextStep() {
+    this.activeIndex++;
+    this.stepLabel = this.items[this.activeIndex].label;
+  }
+
+  prevStep() {
+    this.activeIndex--;
+    this.stepLabel = this.items[this.activeIndex].label;
+  }
 
   get checkOutData() {
     const checkOutData: any = this.commonService.checkOutData;
@@ -26,6 +46,68 @@ export class CheckoutMainComponent {
 
   ngOnInit() {
     this.getAdresses();
+
+
+    if (this.commonService.isLoggedIn) {
+      this.stepLabel = 'Info';
+
+      this.items = [
+        {
+          label: 'Info',
+          command: (event: any) => {
+            this.stepLabel = 'Info';
+          }
+        },
+        {
+          label: 'Address',
+          command: (event: any) => {
+            this.stepLabel = 'Address';
+          }
+        },
+        {
+          label: 'Payment',
+          command: (event: any) => {
+            this.stepLabel = 'Payment';
+          }
+        },
+        {
+          label: 'Confirmation',
+          command: (event: any) => {
+            this.stepLabel = 'Confirmation';
+          }
+        }
+      ];
+    } else {
+      this.stepLabel = 'Register';
+
+      this.items = [
+        {
+          label: 'Register',
+          command: (event: any) => {
+            this.stepLabel = 'Register';
+          }
+        },
+        {
+          label: 'Address',
+          command: (event: any) => {
+            this.stepLabel = 'Address';
+          }
+        },
+        {
+          label: 'Payment',
+          command: (event: any) => {
+            this.stepLabel = 'Payment';
+          }
+        },
+        {
+          label: 'Confirmation',
+          command: (event: any) => {
+            this.stepLabel = 'Confirmation';
+          }
+        }
+      ];
+    }
+
   }
 
   getAdresses() {
@@ -63,13 +145,20 @@ export class CheckoutMainComponent {
   }
 
   placeOrder() {
-    const reqData = {
-      ...this.checkOutData,
-      userId: this.commonService.userId
+    if (this.commonService.userId) {
+      const reqData = {
+        ...this.checkOutData,
+        userId: this.commonService.userId
+      }
+  
+      this.commonService.showSuccess('Checkout', 'Order placed successfully!');
+      this.router.navigate(['/home']);
+
+    } else {
+      this.activeIndex = 0;
+      this.stepLabel = 'Register';
     }
 
-    this.commonService.showSuccess('Checkout', 'Order placed successfully!');
-    this.router.navigate(['/home']);
 
     // const placeOrderApi = this.checkoutService.placeOrder(reqData).subscribe({
     //   next: resData => {
@@ -89,5 +178,28 @@ export class CheckoutMainComponent {
     // })
 
     // this.subscriptions.push(placeOrderApi);
+  }
+
+  onActiveIndexChange(event: number) {
+    this.activeIndex = event;
+  }
+
+  signInData(ev: any) {
+    console.log(ev);
+    if (ev.next === 'sign-up') {
+      this.userFor = 'signup';
+    } else {
+      this.userFor = 'otp';
+    }
+  }
+
+  signUpData(ev: any) {
+    console.log(ev);
+    this.userFor = 'signin';
+  }
+
+  otpData(ev: any) {
+    console.log(ev);
+    this.ngOnInit();
   }
 }

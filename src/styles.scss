@@ -472,3 +472,20 @@ ng-otp-input {
     font-family: "Raleway", sans-serif;
     color: #000;
 }
+
+.save-for-later {
+    .p-button.p-button-text {
+        font-size: 12px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+.stepper-bottom-btn {
+    padding: 15px 20px 0 0;
+    .p-button {
+        width: auto;
+        // float: right;
+        margin-top: 25px;
+    }
+}

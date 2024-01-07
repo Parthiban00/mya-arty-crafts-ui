@@ -1,9 +1,9 @@
-<div class="h-screen flex justify-content-center align-items-center">
+<div class="flex justify-content-center align-items-center" [ngClass]="{'h-screen ':!inputData}">
     <div class="h-auto w-27rem relative bg-white border-round" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-        <div class="profile-circle h-10rem w-10rem surface-400 -my-8 mx-auto border-circle bg-contain">
+        <div class="profile-circle h-10rem w-10rem surface-400 -my-8 mx-auto border-circle bg-contain"  *ngIf="!inputData">
         </div>
         <div class="card text-center h-full p-4 mt-8">
-            <div class="text-indigo-400">
+            <div class="text-indigo-400" *ngIf="!inputData || inputData.from !=='checkout'">
                 <h3>Sign Up</h3>
             </div>
             <div class="card mt-5">
@@ -25,12 +25,17 @@
                         <input type="text" class="p-inputtext-sm w-17rem" pInputText placeholder="Mobile No." />
                     </span>
                 </div>
+
+                <div class="field">
+                    <textarea rows="5" cols="30" pInputTextarea
+                        placeholder="Enter full address" style="width: 268px;"></textarea>
+                </div>
                 
                 <div class="py-4 px-0 flex justify-content-center align-items-center">
-                    <p-button label="Submit" class="w-15rem" [routerLink]="['/auth/sign-in']" styleClass="p-button-sm"></p-button>
+                    <p-button label="Submit" class="w-15rem" (click)="submit()" styleClass="p-button-sm"></p-button>
                 </div>
                 <div class="py-4 px-0 flex h-8rem justify-content-center align-items-center">
-                    <button pButton type="button" [routerLink]="['/auth/sign-in']" label="Already have an account ? Sign In" icon="pi pi-sign-in" iconPos="right" class="p-button-text w-15rem"></button>
+                    <button pButton type="button" (click)="goToSignIn()" label="Already have an account ? Sign In" icon="pi pi-sign-in" iconPos="right" class="p-button-text w-15rem"></button>
                 </div>
             </div>
 

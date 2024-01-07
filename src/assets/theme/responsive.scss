@@ -98,6 +98,10 @@
     body {
         margin-top: 100px;
     }
+
+    .home-banner{
+        height: 30rem;
+    }
 }
 
 /* Large devices (desktops, 992px and below) */
@@ -106,6 +110,10 @@
 
     body {
         margin-top: 100px;
+    }
+
+    .home-banner{
+        height: 30rem;
     }
 }
 
@@ -134,5 +142,9 @@
 @media (max-width: 680px) {
     body {
         margin-top: 170px;
+    }
+
+    .home-banner{
+        height: 10rem;
     }
 }

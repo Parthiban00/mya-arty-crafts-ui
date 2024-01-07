@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { StorageService } from '../../services/storage.service';
@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./otp.component.scss']
 })
 export class OTPComponent {
+  @Input('inputData') inputData: any;
+  @Output() emitData = new EventEmitter<any>();
+
+
   otp: string = '';
   showOtpComponent = true;
   @ViewChild('ngOtpInput', { static: false }) ngOtpInput: any;
@@ -38,15 +42,21 @@ export class OTPComponent {
   }
 
   signIn() {
-    const defaultUerInfo ={
+    const defaultUerInfo = {
       _id: '1',
       fullName: 'ParthiRam',
       email: 'parthi@gmail.com',
       mobileNo: '9076767878',
     }
 
-    localStorage.setItem('userData',JSON.stringify(defaultUerInfo));
-    this.router.navigate(['']);
+    localStorage.setItem('userData', JSON.stringify(defaultUerInfo));
+
+    if (this.inputData) {
+      this.emitData.emit({ status: 'verified' });
+    } else {
+      this.router.navigate(['']);
+
+    }
 
     // if (this.signInForm.valid) {
 
@@ -54,9 +64,9 @@ export class OTPComponent {
     //   this.authenticationService.login(data).subscribe({
     //     next: resdata => {
     //       if (resdata.status) {
-            // // this.storageService.saveUser(resdata.data);
-            // localStorage.setItem('userData',JSON.stringify(resdata.data));
-            // this.router.navigate(['/home']);
+    // // this.storageService.saveUser(resdata.data);
+    // localStorage.setItem('userData',JSON.stringify(resdata.data));
+    // this.router.navigate(['/home']);
     //       }
     //     },
     //     error: err => {

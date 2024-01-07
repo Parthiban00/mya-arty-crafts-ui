@@ -1589,7 +1589,7 @@
   .p-rating .p-rating-icon:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #BFDBFE;
+    box-shadow: none;
   }
   .p-rating .p-rating-icon:first-child {
     margin-left: 0;
@@ -5563,7 +5563,7 @@
   .p-steps .p-steps-item .p-menuitem-link:not(.p-disabled):focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem #BFDBFE;
+    box-shadow: none;
   }
   .p-steps .p-steps-item.p-highlight .p-steps-number {
     background: #EFF6FF;
